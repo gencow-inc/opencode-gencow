@@ -4,7 +4,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
-export const MCP_URL = "https://mcp.gencow.app/api/mcp";
+export const MCP_URL = "https://docs.gencow.com/api/mcp";
 export const EGO_SKILL_SOURCE = "citrolabs/ego-lite";
 const MANIFEST = ".gencow-opencode.json";
 const ASSETS = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "assets");
