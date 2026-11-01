@@ -173,7 +173,7 @@ export async function install({
     else log("ego-browser 브라우저 앱은 첫 사용 때 설치 안내가 나옵니다. 수업용 계정/프로필로만 사용하세요.");
   }
 
-  log(`${prefix}완료. OpenCode를 실행하고 /gencow-start 를 입력해 보세요. 문제가 있으면: npx @gencow/opencode doctor`);
+  log(`${prefix}완료. OpenCode를 실행하고 /gencow-start 를 입력해 보세요. 문제가 있으면: npx github:spaceflo-io/opencode-gencow doctor`);
   return { installed, addedMcp };
 }
 
@@ -247,7 +247,7 @@ export async function doctor({
 
   const manifest = readManifest(dir);
   if (!manifest) {
-    fail("설치 기록이 없습니다. 먼저 `npx @gencow/opencode install` 을 실행하세요.");
+    fail("설치 기록이 없습니다. 먼저 `npx github:spaceflo-io/opencode-gencow install` 을 실행하세요.");
   } else {
     const missing = manifest.files.filter((rel) => !fs.existsSync(path.join(dir, rel)));
     missing.length === 0

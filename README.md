@@ -4,13 +4,21 @@
 
 > 상태: 비공개 초안(v0.1.0). 아직 npm에 발행하지 않았습니다.
 
-## 설치
+## 설치 (GitHub에서 바로)
+
+아직 npm에 발행하지 않았으므로 GitHub 저장소를 직접 사용합니다. 비공개 저장소라서 **설치할 컴퓨터에서 이 저장소에 접근 권한이 있는 GitHub 계정으로 로그인**되어 있어야 합니다 (`gh auth login` 또는 git 자격 증명). 먼저 OpenCode(1.4.0 이상)와 Node.js 20 이상이 필요합니다.
 
 ```bash
-npx @gencow/opencode install
+# 방법 1: 한 줄 (권장)
+npx github:spaceflo-io/opencode-gencow install
+
+# 방법 2: 내려받아 실행 (방법 1이 인증 문제로 안 될 때)
+git clone https://github.com/spaceflo-io/opencode-gencow.git
+cd opencode-gencow
+node bin/cli.mjs install
 ```
 
-macOS, Windows, Linux 모두 같은 명령입니다. 먼저 OpenCode(1.4.0 이상)가 설치되어 있어야 합니다.
+방법 2에서는 이후 명령도 `node bin/cli.mjs doctor`처럼 실행합니다. 업데이트는 `git pull` 후 `install`을 다시 실행하세요. macOS, Windows, Linux 모두 같은 명령입니다.
 
 | 명령 | 하는 일 |
 |---|---|
