@@ -1,1 +1,69 @@
 # opencode-gencow
+
+[OpenCode](https://opencode.ai)에서 Gencow를 쉽게 쓰기 위한 설정 묶음입니다. 초급자와 교육용을 대상으로, 어렵거나 복잡한 기능은 넣지 않았습니다.
+
+> 상태: 비공개 초안(v0.1.0). 아직 npm에 발행하지 않았습니다.
+
+## 설치
+
+```bash
+npx @gencow/opencode install
+```
+
+macOS, Windows, Linux 모두 같은 명령입니다. 먼저 OpenCode(1.4.0 이상)가 설치되어 있어야 합니다.
+
+| 명령 | 하는 일 |
+|---|---|
+| `install` | 아래 구성 요소를 OpenCode 설정 폴더에 설치 |
+| `doctor` | 설치 상태 점검 (OpenCode, 파일, MCP 등록·연결, ego-browser) |
+| `uninstall` | 설치한 항목만 제거 |
+
+옵션: `--dry-run`(미리보기), `--skip-ego`(ego-browser 건너뜀), `--config-dir <경로>`.
+
+설치 후 OpenCode를 실행하고 `/gencow-start`를 입력하세요.
+
+## 들어 있는 것
+
+| 구분 | 이름 | 설명 |
+|---|---|---|
+| MCP | `gencow` | `https://mcp.gencow.app/api/mcp` 원격 MCP를 `opencode.json`에 등록 |
+| 스킬 | `gencow-getting-started` | 첫 앱 만들기 |
+| | `gencow-deploy-my-app` | 개발 환경 배포와 확인 |
+| | `gencow-troubleshoot` | 오류 진단 (MCP 사용) |
+| | `git-master` | 쉬운 git 안내 |
+| | `debugging` | 재현→관찰→검증→수정 순서 |
+| | `ego-browser` | 외부 스킬 ([CitroLabs/ego-lite](https://github.com/CitroLabs/ego-lite)), 아래 참고 |
+| 에이전트 | `gencow-helper` | 쉬운 말로 설명하는 기본 도우미 |
+| 명령 | `/gencow-start` `/gencow-deploy` `/gencow-fix` `/handoff` | |
+
+훅, 멀티 에이전트, 모델 지정은 의도적으로 넣지 않았습니다.
+
+## 설치 위치
+
+OpenCode 설정 폴더는 `OPENCODE_CONFIG_DIR`, 없으면 `$XDG_CONFIG_HOME/opencode`, 없으면 `~/.config/opencode`입니다 (Windows는 `%USERPROFILE%\.config\opencode`).
+
+- `skills/`, `agents/`, `commands/` 에 파일 복사
+- `opencode.json` 의 `mcp.gencow` 추가
+- `.gencow-opencode.json` 에 설치 기록 (제거할 때 사용)
+
+안전 장치: 다시 실행해도 같은 결과이고, 덮어쓰는 기존 파일과 `opencode.json`은 `.bak-<시각>`으로 백업합니다. 설정 파일이 깨져 있으면 아무것도 쓰지 않고 중단합니다.
+
+## ego-browser (macOS/Windows만)
+
+브라우저를 에이전트가 조작하는 외부 도구입니다. 설치기는 원 저장소의 명령(`npx skills add citrolabs/ego-lite`)을 호출할 뿐 파일을 복사하지 않습니다. 브라우저 앱은 첫 사용 때 설치 안내가 나옵니다. Linux는 아직 지원되지 않아 건너뜁니다. 설치 실패는 경고만 하고 나머지 설치는 완료됩니다.
+
+교육 시 주의: 로그인된 브라우저를 에이전트가 쓸 수 있으므로 수업용 계정이나 별도 프로필을 쓰세요. 앱의 교육용 사용 조건은 CitroLabs에 확인이 필요합니다.
+
+## 개발
+
+```bash
+npm test      # Node 20 이상, 외부 의존성 없음
+```
+
+구조: `bin/cli.mjs`(CLI), `src/lib.mjs`(설치·제거·점검), `assets/`(설치되는 파일 원본), `test/`.
+
+## 알려진 한계 / 다음 작업
+
+- 패키지 이름(`@gencow/opencode`)과 npm 소속은 미정입니다. 소속 조직은 `spaceflo-io`입니다.
+- 라이선스 미지정 (공개 전에 결정).
+- 2차 후보: `init-deep`(gencow용 AGENTS.md 생성), `playwright` 화면 확인.

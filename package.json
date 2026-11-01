@@ -1,0 +1,21 @@
+{
+  "name": "@gencow/opencode",
+  "version": "0.1.0",
+  "description": "Gencow setup bundle for OpenCode: Gencow MCP, beginner-friendly skills, one helper agent",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "gencow-opencode": "bin/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "assets"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}
