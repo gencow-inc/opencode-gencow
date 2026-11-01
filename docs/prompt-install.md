@@ -40,9 +40,10 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 - 먼저 bunx gencow@latest whoami 로 로그인 여부를 확인해.
 - 로그인이 안 되어 있으면:
   1) 내가 Gencow 계정이 있는지 물어봐.
-  2) 없으면 회원가입을 안내해. Gencow 클라우드는 https://gencow.app 이야. 가입 화면을 찾아 주소를 알려 주고, 가입은 내가 브라우저에서 직접 해. (가입 주소는 확인되지 않았으니 못 찾으면 https://docs.gencow.com 을 안내해 줘.)
-  3) 가입이 끝났다고 하면 bunx gencow@latest login 을 실행하고, 브라우저나 터미널에서 내가 해야 할 일을 알려 줘.
-  4) 다시 bunx gencow@latest whoami 로 로그인된 계정이 나오는지 확인해.
+  2) 계정이 없으면 회원가입 주소 https://gencow.app/signup 을 알려 줘. 가입은 내가 브라우저에서 직접 해.
+  3) 계정이 이미 있으면 가입하지 말고 https://gencow.app/login 에서 로그인하라고 안내해 줘.
+  4) 가입 또는 로그인을 마쳤다고 하면 bunx gencow@latest login 을 실행하고, 브라우저나 터미널에서 내가 해야 할 일을 알려 줘.
+  5) 다시 bunx gencow@latest whoami 로 로그인된 계정이 나오는지 확인해.
 - 참고: "gencow auth" 라는 명령은 없어. 로그인은 gencow login 이야.
 
 [6단계] ego-browser (선택, macOS/Windows만)
