@@ -4,6 +4,13 @@
 
 > 상태: 비공개 초안(v0.1.0). 아직 npm에 발행하지 않았습니다.
 
+## 처음 쓰는 방법 (OpenCode에 붙여넣기)
+
+1. [설치 프롬프트](docs/prompt-install.md): Node/Bun/pnpm 설치, 이 묶음 설치, Gencow 회원가입·로그인(`gencow login`), ego-browser 안내까지 OpenCode가 단계별로 진행합니다.
+2. [테스트 프롬프트](docs/prompt-test.md): 설치 후 OpenCode를 재시작하고 붙여넣어 검증합니다.
+
+설치와 테스트는 별도 단계입니다. 아래는 설치기를 직접 실행하는 방법입니다.
+
 ## 설치 (GitHub에서 바로)
 
 아직 npm에 발행하지 않았으므로 GitHub 저장소를 직접 사용합니다. 비공개 저장소라서 **설치할 컴퓨터에서 이 저장소에 접근 권한이 있는 GitHub 계정으로 로그인**되어 있어야 합니다 (`gh auth login` 또는 git 자격 증명). 먼저 OpenCode(1.4.0 이상)와 Node.js 20 이상이 필요합니다.
