@@ -37,11 +37,22 @@ node bin/cli.mjs install
 
 설치 후 OpenCode를 실행하고 `/gencow-start`를 입력하세요.
 
+## 로그인이 필요합니다
+
+Gencow MCP(`mcp.gencow.com`)는 **Gencow 계정으로 로그인해야** 쓸 수 있습니다. 로그인하지 않으면 OpenCode에서 `needs authentication`으로 표시되고 MCP 도구를 쓸 수 없습니다.
+
+1. 계정이 없으면 https://gencow.app/signup 에서 회원가입합니다. 이미 있으면 https://gencow.app/login 에서 로그인합니다.
+2. CLI 로그인: `bunx gencow@latest login` (확인: `bunx gencow@latest whoami`)
+3. MCP 인증: `opencode mcp auth gencow` 를 실행하고 브라우저에서 승인합니다.
+4. 확인: `opencode mcp list` 에서 `gencow` 가 `connected` 이면 됩니다.
+
+설치 프롬프트가 이 과정을 안내합니다. 로그인하지 않아도 스킬, 에이전트, 명령은 동작하지만, MCP 기반 문서 검색과 오류 진단은 쓸 수 없습니다.
+
 ## 들어 있는 것
 
 | 구분 | 이름 | 설명 |
 |---|---|---|
-| MCP | `gencow` | `https://mcp.gencow.com/api/mcp` 원격 MCP를 `opencode.json`에 등록 |
+| MCP | `gencow` | `https://mcp.gencow.com/api/mcp` 원격 MCP를 `opencode.json`에 등록 (로그인 필요, 위 참고) |
 | 스킬 | `gencow-getting-started` | 첫 앱 만들기 |
 | | `gencow-deploy-my-app` | 개발 환경 배포와 확인 |
 | | `gencow-troubleshoot` | 오류 진단 (MCP 사용) |

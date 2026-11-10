@@ -11,7 +11,8 @@ description: Gencow로 새 앱을 처음 만들 때 사용. 프로젝트 생성,
 
 1. Node.js와 패키지 관리자가 있는지 확인한다 (`node -v`).
 2. Gencow CLI 버전을 확인한다 (`gencow --version`). 없으면 `npx gencow@latest`로 실행할 수 있다고 알려 준다.
-3. 모르는 기능이나 API는 추측하지 말고 **Gencow MCP의 문서 검색 도구**로 먼저 찾는다.
+3. Gencow 로그인을 확인한다 (`gencow whoami`). 안 되어 있으면 계정이 있는지 묻고, 없으면 https://gencow.app/signup 에서 가입, 있으면 https://gencow.app/login 으로 로그인하게 한 뒤 `gencow login`을 실행한다. MCP는 `opencode mcp auth gencow` 로 인증해야 쓸 수 있다.
+4. 모르는 기능이나 API는 추측하지 말고 **Gencow MCP의 문서 검색 도구**로 먼저 찾는다.
 
 ## 순서
 
