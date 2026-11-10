@@ -7,6 +7,8 @@ description: 이미지 생성처럼 Gencow가 제공하는 도구를 쓸 때 사
 
 Gencow MCP(`gencow`)는 도구가 수십 개 나열되어 있지 않다. 보이는 도구는 **3개뿐**이고, 실제 기능(이미지 생성 등)은 이 3개를 거쳐 호출한다. 그래서 목록에 `image_generate`가 안 보여도 **"기능이 없다"고 말하면 안 된다.**
 
+OpenCode에서는 서버 이름이 앞에 붙어 **`gencow_search_services`, `gencow_describe_service`, `gencow_call_service`**로 보일 수 있다. 이름 일부(`search_services` 등)가 맞으면 같은 도구다.
+
 | 도구 | 하는 일 |
 |---|---|
 | `search_services` | 하고 싶은 일로 서비스를 찾는다. 예: `query: "이미지 생성"` |
