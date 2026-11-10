@@ -78,7 +78,7 @@ OpenCode 설정 폴더는 `OPENCODE_CONFIG_DIR`, 없으면 `$XDG_CONFIG_HOME/ope
 
 ## ego-browser (macOS/Windows만)
 
-브라우저를 에이전트가 조작하는 외부 도구입니다. 설치기는 원 저장소의 명령(`npx skills add citrolabs/ego-lite`)을 호출할 뿐 파일을 복사하지 않습니다. 브라우저 앱은 첫 사용 때 설치 안내가 나옵니다. Linux는 아직 지원되지 않아 건너뜁니다. 설치 실패는 경고만 하고 나머지 설치는 완료됩니다.
+브라우저를 에이전트가 조작하는 외부 도구입니다. 설치기는 원 저장소의 명령(`npx skills add citrolabs/ego-lite -g -a opencode -y`)을 호출할 뿐 파일을 복사하지 않습니다. 전역(`-g`)으로 `~/.agents/skills/ego-browser`에 설치되어 어느 폴더에서 열어도 로드됩니다. 이 명령은 **Node.js 22.20 이상**이 필요해서, 낮으면 건너뛰고 안내합니다. 브라우저 앱은 첫 사용 때 설치 안내가 나옵니다. Linux는 아직 지원되지 않아 건너뜁니다. 설치 실패는 경고만 하고 나머지 설치는 완료됩니다.
 
 교육 시 주의: 로그인된 브라우저를 에이전트가 쓸 수 있으므로 수업용 계정이나 별도 프로필을 쓰세요. 앱의 교육용 사용 조건은 CitroLabs에 확인이 필요합니다.
 

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { install, uninstall, doctor, parseJsonc, configDir, MCP_URL } from "../src/lib.mjs";
+import { install, uninstall, doctor, parseJsonc, configDir, MCP_URL, EGO_INSTALL_ARGS, nodeSupportsEgo } from "../src/lib.mjs";
 
 const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), "gencow-oc-"));
 const read = (...p) => fs.readFileSync(path.join(...p), "utf8");
@@ -82,10 +82,10 @@ test("install --dry-run: 아무것도 쓰지 않는다", async () => {
 test("ego-browser: 지원 OS에서만 설치 명령을 호출하고 실패해도 설치는 끝난다", async () => {
   let calls = 0;
   const dir = tmp();
-  await install({ dir, platform: "linux", runEgo: () => (calls++, true) });
+  await install({ dir, platform: "linux", nodeVersion: "22.23.0", runEgo: () => (calls++, true) });
   assert.equal(calls, 0);
-  await install({ dir, platform: "win32", runEgo: () => (calls++, true) });
-  await install({ dir, platform: "darwin", runEgo: () => (calls++, false) });
+  await install({ dir, platform: "win32", nodeVersion: "22.23.0", runEgo: () => (calls++, true) });
+  await install({ dir, platform: "darwin", nodeVersion: "22.23.0", runEgo: () => (calls++, false) });
   assert.equal(calls, 2);
   assert.ok(fs.existsSync(path.join(dir, "agents/gencow-helper.md")));
 });
@@ -127,4 +127,16 @@ test("configDir: OS와 무관하게 환경변수/홈 기준", () => {
 
 test("parseJsonc: 문자열 안의 // 는 주석으로 보지 않는다", () => {
   assert.deepEqual(parseJsonc('{"u":"https://a//b", /* c */ "n":1,}'), { u: "https://a//b", n: 1 });
+});
+
+test("ego-browser: 전역(-g)/opencode 대상으로 설치하고 Node 22.20 미만은 건너뛴다", async () => {
+  assert.deepEqual(EGO_INSTALL_ARGS.slice(-4), ["-g", "-a", "opencode", "-y"]);
+  assert.equal(nodeSupportsEgo("22.19.0"), false);
+  assert.equal(nodeSupportsEgo("22.20.0"), true);
+  assert.equal(nodeSupportsEgo("24.1.0"), true);
+  let calls = 0;
+  const logs = [];
+  await install({ dir: tmp(), platform: "darwin", nodeVersion: "20.11.0", runEgo: () => (calls++, true), log: (l) => logs.push(l) });
+  assert.equal(calls, 0);
+  assert.ok(logs.some((l) => l.includes("22.20")));
 });

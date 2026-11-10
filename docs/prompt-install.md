@@ -18,12 +18,12 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 
 [1단계] 현재 상태 확인 (읽기만)
 - OS, node -v, bun -v, pnpm -v, git --version, gh --version 을 확인해서 표로 보여 줘.
-- Gencow에 필요한 것: Node.js 20 이상, Bun, pnpm 10.33.0, git.
+- Gencow에 필요한 것: Node.js 22.20 이상 (ego-browser 설치에 필요), Bun, pnpm 10.33.0, git.
 
 [2단계] 없는 도구만 설치 (허락받고 하나씩)
 - macOS: Homebrew가 있으면 brew를 쓰고, 없으면 Homebrew 설치를 안내만 해 줘 (공식 사이트 안내, 내가 직접 실행).
 - Windows: winget을 사용해.
-- Node.js: 20 이상 LTS
+- Node.js: 22.20 이상
 - Bun: 공식 설치 방법으로 설치
 - pnpm: 10.33.0 버전으로 맞춰. (예: corepack enable 후 corepack prepare pnpm@10.33.0 --activate)
 - 설치 후 새 터미널이 필요하면 알려 줘.
@@ -51,7 +51,7 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 
 [6단계] ego-browser (선택, macOS/Windows만)
 - 이건 AI가 브라우저를 조작하는 도구야. Linux는 지원되지 않으니 건너뛰어.
-- 설치기가 이미 npx skills add citrolabs/ego-lite 를 실행했는지 확인하고, 안 됐으면 그 명령을 안내해 줘.
+- 설치기가 이미 ego-browser 를 설치했는지 확인해 (~/.agents/skills/ego-browser 가 있어야 해). 없으면 npx skills add citrolabs/ego-lite -g -a opencode -y 를 안내해 줘. 이 명령은 Node.js 22.20 이상이 필요해.
 - 브라우저 앱은 처음 사용할 때 설치 안내가 나온다고 알려 줘.
 - 주의를 꼭 말해 줘: 로그인된 브라우저를 AI가 쓸 수 있으니, 개인 은행/메일 계정이 열려 있지 않은 수업용 계정이나 별도 프로필에서만 써야 해.
 

@@ -17,7 +17,10 @@ description: 만든 Gencow 앱을 개발 환경에 배포하고 잘 올라갔는
 ## 배포
 
 - 백엔드: `gencow deploy`
-- 화면(정적 파일)만: `gencow static` 또는 `gencow deploy --static`
+- 화면(정적 파일)만 올릴 때는 **빌드 결과 폴더**(예: `dist/`)를 함께 적는다.
+  - 백엔드 코드가 없으면: `gencow static dist`
+  - 백엔드와 같이 올리면: `gencow deploy --static dist`
+  - 폴더 이름은 프로젝트의 빌드 결과 폴더에 맞춘다. 모르면 사용자에게 먼저 묻는다.
 
 ## 배포 후 확인
 

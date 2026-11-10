@@ -9,7 +9,7 @@ description: Gencow 앱에서 오류가 나거나 빌드/실행/배포가 실패
 
 1. **오류 문장을 그대로 확인한다.** 오류 코드, 어느 단계(설치/빌드/실행/배포/DB)에서 났는지 찾는다.
 2. **프로젝트 점검을 먼저 한다.** `gencow doctor` (읽기만 하는 진단). 고쳐 준다는 `--fix`는 바뀔 내용을 먼저 보여 주고 허락받은 뒤에만 쓴다.
-3. **Gencow MCP**로 원인을 찾는다. `search_services`로 진단·문서 서비스를 찾고 `call_service`로 호출한다 (`gencow-portal-tools` 스킬 참고. 인증 오류면 먼저 `opencode mcp auth gencow` 로 로그인하게 한다). 오류 문장을 넣어 원인과 해결 방법을 찾는다. 버전이 의심되면 호환성 확인 도구도 쓴다.
+3. **Gencow MCP**로 원인을 찾는다. `search_services`로 `gencow-docs` 서비스를 찾고 `call_service`로 `diagnose_error`(오류 진단), `search_docs`(문서 검색)를 호출한다 (`gencow-portal-tools` 스킬 참고. 인증 오류면 먼저 `opencode mcp auth gencow` 로 로그인하게 한다). 오류 문장을 넣어 원인과 해결 방법을 찾는다. 버전이 의심되면 호환성 확인 도구도 쓴다.
 4. **원인을 한두 문장으로 쉽게 설명**하고, 고칠 방법을 제안한다. 사용자가 이해한 뒤에 고친다.
 5. **고친 뒤 같은 동작을 다시 해서** 정말 해결됐는지 확인한다.
 

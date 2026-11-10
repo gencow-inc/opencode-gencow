@@ -6,6 +6,16 @@ import { fileURLToPath } from "node:url";
 
 export const MCP_URL = "https://mcp.gencow.com/api/mcp";
 export const EGO_SKILL_SOURCE = "citrolabs/ego-lite";
+/** 어느 폴더에서 열어도 로드되도록 전역(-g) 설치, OpenCode 대상(-a opencode), 질문 생략(-y). */
+export const EGO_INSTALL_ARGS = ["skills", "add", EGO_SKILL_SOURCE, "-g", "-a", "opencode", "-y"];
+export const EGO_INSTALL_CMD = `npx ${EGO_INSTALL_ARGS.join(" ")}`;
+const EGO_MIN_NODE = [22, 20];
+
+/** skills CLI 는 Node 22.20 이상이 필요하다. */
+export function nodeSupportsEgo(version = process.versions.node) {
+  const [maj, min] = version.split(".").map(Number);
+  return maj > EGO_MIN_NODE[0] || (maj === EGO_MIN_NODE[0] && min >= EGO_MIN_NODE[1]);
+}
 const MANIFEST = ".gencow-opencode.json";
 const ASSETS = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "assets");
 
@@ -91,7 +101,7 @@ export function egoSupported(platform = process.platform) {
 }
 
 function defaultRunEgo() {
-  const r = spawnSync("npx", ["--yes", "skills", "add", EGO_SKILL_SOURCE], {
+  const r = spawnSync("npx", ["--yes", ...EGO_INSTALL_ARGS], {
     stdio: "inherit",
     shell: process.platform === "win32",
   });
@@ -104,6 +114,7 @@ export async function install({
   skipEgo = false,
   log = () => {},
   platform = process.platform,
+  nodeVersion = process.versions.node,
   runEgo = defaultRunEgo,
 } = {}) {
   const prefix = dryRun ? "[미리보기] " : "";
@@ -165,10 +176,12 @@ export async function install({
     log("ego-browser: --skip-ego 로 건너뜀");
   } else if (!egoSupported(platform)) {
     log("ego-browser: 이 OS(Linux 등)는 아직 지원되지 않아 건너뜁니다. 화면 확인은 playwright 사용을 권장합니다.");
+  } else if (!nodeSupportsEgo(nodeVersion)) {
+    log(`ego-browser: Node.js 22.20 이상이 필요합니다 (현재 ${nodeVersion}). Node 를 올린 뒤 다시 실행하세요. 나머지 설치는 완료되었습니다.`);
   } else if (dryRun) {
-    log(`${prefix}ego-browser 스킬 설치: npx skills add ${EGO_SKILL_SOURCE}`);
+    log(`${prefix}ego-browser 스킬 설치: ${EGO_INSTALL_CMD}`);
   } else {
-    log(`ego-browser 스킬 설치 중: npx skills add ${EGO_SKILL_SOURCE}`);
+    log(`ego-browser 스킬 설치 중: ${EGO_INSTALL_CMD}`);
     if (!runEgo()) log("경고: ego-browser 설치에 실패했습니다. 나머지 설치는 완료되었습니다. 나중에 위 명령을 직접 실행하세요.");
     else log("ego-browser 브라우저 앱은 첫 사용 때 설치 안내가 나옵니다. 수업용 계정/프로필로만 사용하세요.");
   }
@@ -281,7 +294,7 @@ export async function doctor({
     ];
     places.some((p) => fs.existsSync(p))
       ? pass("ego-browser 스킬 설치됨")
-      : warn("ego-browser 스킬이 없습니다 (선택). 설치: npx skills add citrolabs/ego-lite");
+      : warn(`ego-browser 스킬이 없습니다 (선택). 설치: ${EGO_INSTALL_CMD}`);
   }
   return ok;
 }

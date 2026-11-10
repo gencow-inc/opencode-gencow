@@ -19,6 +19,7 @@ description: Gencow로 새 앱을 처음 만들 때 사용. 프로젝트 생성,
 1. **무엇을 만들지 한 문장으로 묻는다.** 예: "할 일 목록 앱".
 2. **템플릿을 고른다.** 대부분 `task-app` 또는 `default`로 충분하다.
    `gencow init <앱이름> --template task-app`
+   (템플릿은 `default`, `task-app`, `admin-tool`, `fullstack`, `ai-chat`. 화면만 만들면 `default`, 데이터 저장이 필요하면 `task-app`이나 `fullstack`이 맞다. 의존성 설치가 오래 걸리거나 실패하면 `--no-install`로 만든 뒤 패키지 설치를 따로 한다.)
 3. **폴더로 이동해 로컬에서 실행한다.** `gencow dev --local`
    (의존성이 없다는 오류가 나오면 패키지 설치를 먼저 한다.)
 4. **화면이 뜨는지 확인한다.** 주소가 나오면 알려 주고, 브라우저로 열어 보게 한다.
