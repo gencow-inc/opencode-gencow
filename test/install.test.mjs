@@ -18,6 +18,7 @@ test("install: 스킬/에이전트/명령 배치와 MCP 등록", async () => {
     "skills/gencow-troubleshoot/SKILL.md",
     "skills/git-master/SKILL.md",
     "skills/debugging/SKILL.md",
+    "skills/gencow-portal-tools/SKILL.md",
     "agents/gencow-helper.md",
     "commands/gencow-start.md",
     "commands/handoff.md",

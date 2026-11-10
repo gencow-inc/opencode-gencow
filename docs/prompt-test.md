@@ -17,9 +17,9 @@
 
 3. Gencow MCP 확인
    - gencow MCP가 연결(인증 완료)되어 있는지 확인해. 인증이 필요하다는 상태면 opencode mcp auth gencow 를 안내해.
-   - 제공되는 도구 이름을 전부 나열해.
-   - 문서 검색 도구로 "gencow deploy 사용법"을 검색해서 결과가 나오는지 확인해.
-   - 오류 진단 도구에 "db:push 중 마이그레이션 오류"를 넣어서 답이 나오는지 확인해.
+   - 제공되는 도구 이름을 전부 나열해. (search_services, describe_service, call_service 3개가 보여야 정상이야.)
+   - search_services 로 "이미지 생성"을 검색해서 tools 서비스가 나오는지 확인해. 나오면 describe_service 로 도구 목록까지 보여 줘. (call_service 는 크레딧이 차감될 수 있으니 호출하지 마.)
+   - search_services 로 "gencow deploy 사용법"을 검색해서 결과가 나오는지 확인해.
 
 4. 로그인 확인
    - bunx gencow@latest whoami 로 로그인된 계정이 나오는지 확인해. (토큰은 출력하지 마.)

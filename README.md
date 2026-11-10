@@ -58,6 +58,7 @@ Gencow MCP(`mcp.gencow.com`)는 **Gencow 계정으로 로그인해야** 쓸 수 
 | | `gencow-troubleshoot` | 오류 진단 (MCP 사용) |
 | | `git-master` | 쉬운 git 안내 |
 | | `debugging` | 재현→관찰→검증→수정 순서 |
+| | `gencow-portal-tools` | 이미지 생성 등 Gencow 도구 호출 (search → describe → call) |
 | | `ego-browser` | 외부 스킬 ([CitroLabs/ego-lite](https://github.com/CitroLabs/ego-lite)), 아래 참고 |
 | 에이전트 | `gencow-helper` | 쉬운 말로 설명하는 기본 도우미 |
 | 명령 | `/gencow-start` `/gencow-deploy` `/gencow-fix` `/handoff` | |
