@@ -32,9 +32,11 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 - gh auth status 로 확인해. 로그인이 안 되어 있으면 gh auth login 을 안내해 줘. (내가 직접 입력해야 하는 부분은 알려 줘.)
 
 [4단계] Gencow OpenCode 설정 묶음 설치
-- 실행: npx github:spaceflo-io/opencode-gencow install
-- 인증 오류가 나면 대신 git clone https://github.com/spaceflo-io/opencode-gencow.git 후 그 폴더에서 node bin/cli.mjs install 을 실행해.
-- 끝나면 npx github:spaceflo-io/opencode-gencow doctor (clone 했다면 node bin/cli.mjs doctor) 결과를 보여 줘.
+- 설치 폴더는 홈 폴더의 opencode-gencow 야. (macOS: ~/opencode-gencow, Windows: %USERPROFILE%\opencode-gencow)
+- 폴더가 이미 있으면 그 안에서 git pull, 없으면 홈 폴더에서 git clone https://github.com/spaceflo-io/opencode-gencow.git 을 실행해.
+- 그 폴더에서 node bin/cli.mjs install 을 실행해. (npx github:... 는 예전 버전을 재사용할 수 있으니 쓰지 마.)
+- 끝나면 node bin/cli.mjs doctor 결과를 보여 줘.
+- 나중에 업데이트할 때는 OpenCode에서 /gencow-update 를 입력하면 된다고 알려 줘.
 
 [5단계] Gencow 회원가입과 로그인
 - 먼저 bunx gencow@latest whoami 로 로그인 여부를 확인해.

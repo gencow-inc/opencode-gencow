@@ -8,7 +8,8 @@
 
 1. [설치 프롬프트](docs/prompt-install.md): Node/Bun/pnpm 설치, 이 묶음 설치, Gencow 회원가입·로그인(`gencow login`), ego-browser 안내까지 OpenCode가 단계별로 진행합니다.
 2. [테스트 프롬프트](docs/prompt-test.md): 설치 후 OpenCode를 재시작하고 붙여넣어 검증합니다.
-3. [서비스 연결 점검 프롬프트](docs/prompt-service-check.md): Gencow MCP에 새 서비스를 등록한 뒤 검색, 설명, 호출이 되는지 확인합니다.
+3. [업데이트 프롬프트](docs/prompt-update.md): 이미 설치한 PC를 최신으로 갱신합니다. 한 번 붙여넣은 뒤에는 OpenCode에서 `/gencow-update` 만 입력하면 됩니다.
+4. [서비스 연결 점검 프롬프트](docs/prompt-service-check.md): Gencow MCP에 새 서비스를 등록한 뒤 검색, 설명, 호출이 되는지 확인합니다.
 
 설치와 테스트는 별도 단계입니다. 아래는 설치기를 직접 실행하는 방법입니다.
 
@@ -62,7 +63,7 @@ Gencow MCP(`mcp.gencow.com`)는 **Gencow 계정으로 로그인해야** 쓸 수 
 | | `gencow-portal-tools` | 이미지 생성 등 Gencow 도구 호출 (search → describe → call) |
 | | `ego-browser` | 외부 스킬 ([CitroLabs/ego-lite](https://github.com/CitroLabs/ego-lite)), 아래 참고 |
 | 에이전트 | `gencow-helper` | 쉬운 말로 설명하는 기본 도우미 |
-| 명령 | `/gencow-start` `/gencow-deploy` `/gencow-fix` `/handoff` | |
+| 명령 | `/gencow-start` `/gencow-deploy` `/gencow-fix` `/gencow-update` `/handoff` | |
 
 훅, 멀티 에이전트, 모델 지정은 의도적으로 넣지 않았습니다.
 

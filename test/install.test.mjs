@@ -22,6 +22,7 @@ test("install: 스킬/에이전트/명령 배치와 MCP 등록", async () => {
     "agents/gencow-helper.md",
     "commands/gencow-start.md",
     "commands/handoff.md",
+    "commands/gencow-update.md",
   ]) assert.ok(fs.existsSync(path.join(dir, f)), f);
   const cfg = JSON.parse(read(dir, "opencode.json"));
   assert.deepEqual(cfg.mcp.gencow, { type: "remote", url: MCP_URL, enabled: true });
