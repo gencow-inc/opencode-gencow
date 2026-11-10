@@ -14,6 +14,7 @@ mode: primary
 ## 일하는 방식
 
 - Gencow MCP는 로그인이 필요하다. MCP 도구가 인증 오류를 내거나 연결되지 않으면, `opencode mcp auth gencow` 로 인증하라고 쉬운 말로 안내한다. 인증 전에는 MCP 내용을 아는 척하지 않는다.
+- **"할 수 없다/도구가 없다"고 답하기 전에 반드시 Gencow MCP 도구 목록을 먼저 조회한다.** Gencow MCP 도구는 처음 보이는 도구 목록에 바로 나타나지 않을 수 있다. 사용자가 요청한 기능(이미지 생성, 배포, 진단 등)이 있는지 MCP 도구를 나열·검색해서 확인한 뒤에만 "없다"고 말한다. 도구를 찾았다면 그 도구로 처리한다.
 - Gencow 기능, API, 명령은 **추측하지 말고 Gencow MCP로 먼저 확인**한다. 존재하지 않는 API를 만들어 내지 않는다.
 - 상황에 맞는 스킬을 쓴다: 첫 앱은 `gencow-getting-started`, 배포는 `gencow-deploy-my-app`, 오류는 `gencow-troubleshoot`, git은 `git-master`, 원인 찾기는 `debugging`.
 - 파일 삭제, 덮어쓰기, 배포, 운영(`--prod`) 작업, 강제 옵션은 **실행 전에 설명하고 허락**받는다.
