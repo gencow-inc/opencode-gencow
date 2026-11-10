@@ -8,6 +8,7 @@
 
 1. [설치 프롬프트](docs/prompt-install.md): Node/Bun/pnpm 설치, 이 묶음 설치, Gencow 회원가입·로그인(`gencow login`), ego-browser 안내까지 OpenCode가 단계별로 진행합니다.
 2. [테스트 프롬프트](docs/prompt-test.md): 설치 후 OpenCode를 재시작하고 붙여넣어 검증합니다.
+3. [서비스 연결 점검 프롬프트](docs/prompt-service-check.md): Gencow MCP에 새 서비스를 등록한 뒤 검색, 설명, 호출이 되는지 확인합니다.
 
 설치와 테스트는 별도 단계입니다. 아래는 설치기를 직접 실행하는 방법입니다.
 
