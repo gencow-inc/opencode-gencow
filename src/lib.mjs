@@ -4,7 +4,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
-export const MCP_URL = "https://docs.gencow.com/api/mcp";
+export const MCP_URL = "https://mcp.gencow.com/api/mcp";
 export const EGO_SKILL_SOURCE = "citrolabs/ego-lite";
 const MANIFEST = ".gencow-opencode.json";
 const ASSETS = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "assets");
@@ -173,6 +173,7 @@ export async function install({
     else log("ego-browser 브라우저 앱은 첫 사용 때 설치 안내가 나옵니다. 수업용 계정/프로필로만 사용하세요.");
   }
 
+  log(`${prefix}Gencow MCP는 로그인이 필요합니다. 다음 명령으로 인증하세요: opencode mcp auth gencow`);
   log(`${prefix}완료. OpenCode를 실행하고 /gencow-start 를 입력해 보세요. 문제가 있으면: npx github:spaceflo-io/opencode-gencow doctor`);
   return { installed, addedMcp };
 }

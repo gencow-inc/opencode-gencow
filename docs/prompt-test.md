@@ -16,7 +16,7 @@
    - 다음 명령이 있는지 확인해: /gencow-start, /gencow-deploy, /gencow-fix, /handoff
 
 3. Gencow MCP 확인
-   - gencow MCP가 연결되어 있는지 확인해.
+   - gencow MCP가 연결(인증 완료)되어 있는지 확인해. 인증이 필요하다는 상태면 opencode mcp auth gencow 를 안내해.
    - 제공되는 도구 이름을 전부 나열해.
    - 문서 검색 도구로 "gencow deploy 사용법"을 검색해서 결과가 나오는지 확인해.
    - 오류 진단 도구에 "db:push 중 마이그레이션 오류"를 넣어서 답이 나오는지 확인해.

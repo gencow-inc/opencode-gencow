@@ -44,6 +44,9 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
   3) 계정이 이미 있으면 가입하지 말고 https://gencow.app/login 에서 로그인하라고 안내해 줘.
   4) 가입 또는 로그인을 마쳤다고 하면 bunx gencow@latest login 을 실행하고, 브라우저나 터미널에서 내가 해야 할 일을 알려 줘.
   5) 다시 bunx gencow@latest whoami 로 로그인된 계정이 나오는지 확인해.
+- 이어서 Gencow MCP 인증을 진행해. MCP는 로그인이 필요해(OAuth, 인증 서버 https://gencow.app):
+  1) opencode mcp auth gencow 를 실행하고, 열리는 브라우저에서 내가 로그인/승인하도록 안내해.
+  2) opencode mcp list 로 gencow 가 connected 인지 확인해. 인증이 안 되어 있으면 다시 안내해.
 - 참고: "gencow auth" 라는 명령은 없어. 로그인은 gencow login 이야.
 
 [6단계] ego-browser (선택, macOS/Windows만)

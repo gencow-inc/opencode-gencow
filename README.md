@@ -41,7 +41,7 @@ node bin/cli.mjs install
 
 | 구분 | 이름 | 설명 |
 |---|---|---|
-| MCP | `gencow` | `https://docs.gencow.com/api/mcp` 원격 MCP를 `opencode.json`에 등록 |
+| MCP | `gencow` | `https://mcp.gencow.com/api/mcp` 원격 MCP를 `opencode.json`에 등록 |
 | 스킬 | `gencow-getting-started` | 첫 앱 만들기 |
 | | `gencow-deploy-my-app` | 개발 환경 배포와 확인 |
 | | `gencow-troubleshoot` | 오류 진단 (MCP 사용) |
