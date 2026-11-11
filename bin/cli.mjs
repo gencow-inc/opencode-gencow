@@ -4,9 +4,9 @@ import { install, uninstall, doctor, configDir } from "../src/lib.mjs";
 const HELP = `gencow-opencode — OpenCode용 Gencow 설정 묶음
 
 사용법:
-  npx github:spaceflo-io/opencode-gencow install     설치 (MCP, 스킬, 에이전트, 명령, ego-browser)
-  npx github:spaceflo-io/opencode-gencow doctor      설치 상태 점검
-  npx github:spaceflo-io/opencode-gencow uninstall   설치한 항목 제거
+  npx github:gencow-inc/opencode-gencow install     설치 (MCP, 스킬, 에이전트, 명령, ego-browser)
+  npx github:gencow-inc/opencode-gencow doctor      설치 상태 점검
+  npx github:gencow-inc/opencode-gencow uninstall   설치한 항목 제거
 
 옵션:
   --dry-run            실제로 쓰지 않고 할 일만 보여 줌

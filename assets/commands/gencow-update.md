@@ -11,7 +11,7 @@ agent: gencow-helper
 - 설치 폴더는 홈 폴더의 opencode-gencow 야. (macOS: ~/opencode-gencow, Windows: %USERPROFILE%\opencode-gencow)
 - 폴더가 이미 있으면 그 안에서 git pull 을 실행해.
   - 충돌이나 수정된 파일 때문에 실패하면 강제로 덮어쓰지 말고, 오류를 보여 주고 나에게 알려 줘.
-- 폴더가 없으면 git clone https://github.com/spaceflo-io/opencode-gencow.git 을 홈 폴더에서 실행해.
+- 폴더가 없으면 git clone https://github.com/gencow-inc/opencode-gencow.git 을 홈 폴더에서 실행해.
 - 받아 온 최신 커밋을 git log -1 --format="%h %s" 로 보여 줘.
 - 접근 권한 오류가 나면 gh auth status 로 GitHub 로그인을 확인하고, 안 되어 있으면 네가 gh auth login --web 을 실행하고, 출력된 일회용 코드와 주소를 보여 줘. 내가 브라우저에서 승인할게.
 

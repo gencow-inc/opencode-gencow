@@ -19,10 +19,10 @@
 
 ```bash
 # 방법 1: 한 줄 (권장)
-npx github:spaceflo-io/opencode-gencow install
+npx github:gencow-inc/opencode-gencow install
 
 # 방법 2: 내려받아 실행 (방법 1이 인증 문제로 안 될 때)
-git clone https://github.com/spaceflo-io/opencode-gencow.git
+git clone https://github.com/gencow-inc/opencode-gencow.git
 cd opencode-gencow
 node bin/cli.mjs install
 ```

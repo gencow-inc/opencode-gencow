@@ -187,7 +187,7 @@ export async function install({
   }
 
   log(`${prefix}Gencow MCP는 로그인이 필요합니다. 다음 명령으로 인증하세요: opencode mcp auth gencow`);
-  log(`${prefix}완료. OpenCode를 실행하고 /gencow-start 를 입력해 보세요. 문제가 있으면: npx github:spaceflo-io/opencode-gencow doctor`);
+  log(`${prefix}완료. OpenCode를 실행하고 /gencow-start 를 입력해 보세요. 문제가 있으면: npx github:gencow-inc/opencode-gencow doctor`);
   return { installed, addedMcp };
 }
 
@@ -261,7 +261,7 @@ export async function doctor({
 
   const manifest = readManifest(dir);
   if (!manifest) {
-    fail("설치 기록이 없습니다. 먼저 `npx github:spaceflo-io/opencode-gencow install` 을 실행하세요.");
+    fail("설치 기록이 없습니다. 먼저 `npx github:gencow-inc/opencode-gencow install` 을 실행하세요.");
   } else {
     const missing = manifest.files.filter((rel) => !fs.existsSync(path.join(dir, rel)));
     missing.length === 0

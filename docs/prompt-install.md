@@ -3,7 +3,7 @@
 OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode가 Gencow에 필요한 도구 설치부터 로그인까지 안내합니다.
 설치가 끝나면 [테스트 프롬프트](prompt-test.md)로 검증하세요.
 
-사전 조건: OpenCode 설치, 비공개 저장소(`spaceflo-io/opencode-gencow`)에 접근 가능한 GitHub 로그인.
+사전 조건: OpenCode 설치, 비공개 저장소(`gencow-inc/opencode-gencow`)에 접근 가능한 GitHub 로그인.
 
 ```
 너는 Gencow 개발 환경 설치 도우미야. 나는 초급자야. 쉬운 한국어로 짧게 말하고,
@@ -35,7 +35,7 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 
 [4단계] Gencow OpenCode 설정 묶음 설치
 - 설치 폴더는 홈 폴더의 opencode-gencow 야. (macOS: ~/opencode-gencow, Windows: %USERPROFILE%\opencode-gencow)
-- 폴더가 이미 있으면 그 안에서 git pull, 없으면 홈 폴더에서 git clone https://github.com/spaceflo-io/opencode-gencow.git 을 실행해.
+- 폴더가 이미 있으면 그 안에서 git pull, 없으면 홈 폴더에서 git clone https://github.com/gencow-inc/opencode-gencow.git 을 실행해.
 - 그 폴더에서 node bin/cli.mjs install 을 실행해. (npx github:... 는 예전 버전을 재사용할 수 있으니 쓰지 마.)
 - 끝나면 node bin/cli.mjs doctor 결과를 보여 줘.
 - 나중에 업데이트할 때는 OpenCode에서 /gencow-update 를 입력하면 된다고 알려 줘.
