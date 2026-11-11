@@ -13,7 +13,7 @@ agent: gencow-helper
   - 충돌이나 수정된 파일 때문에 실패하면 강제로 덮어쓰지 말고, 오류를 보여 주고 나에게 알려 줘.
 - 폴더가 없으면 git clone https://github.com/spaceflo-io/opencode-gencow.git 을 홈 폴더에서 실행해.
 - 받아 온 최신 커밋을 git log -1 --format="%h %s" 로 보여 줘.
-- 접근 권한 오류가 나면 gh auth status 로 GitHub 로그인을 확인하고, 안 되어 있으면 gh auth login 을 안내해 줘.
+- 접근 권한 오류가 나면 gh auth status 로 GitHub 로그인을 확인하고, 안 되어 있으면 네가 gh auth login --web 을 실행하고, 출력된 일회용 코드와 주소를 보여 줘. 내가 브라우저에서 승인할게.
 
 [2단계] 다시 설치
 - 그 폴더에서 node bin/cli.mjs install 을 실행해. (npx github:... 는 예전 버전을 재사용할 수 있으니 쓰지 마.)
@@ -28,7 +28,7 @@ agent: gencow-helper
 [4단계] 점검
 - node bin/cli.mjs doctor 를 실행하고 결과를 보여 줘.
 - opencode mcp list 로 gencow 가 connected 인지 확인해.
-  "needs authentication" 이면 opencode mcp auth gencow 를 안내해 줘. (브라우저 로그인은 내가 해.)
+  "needs authentication" 이면 네가 opencode mcp auth gencow 를 실행해(막히면 백그라운드로). 출력된 승인 주소(URL)를 보여 주면 내가 브라우저에서 승인할게.
 
 [5단계] 마무리
 - 바뀐 것, 그대로인 것, 실패한 것을 표로 정리해 줘.

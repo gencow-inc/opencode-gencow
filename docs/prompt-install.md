@@ -15,21 +15,23 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 - 비밀번호, 토큰은 화면에 출력하거나 파일에 저장하지 마.
 - 실패하면 같은 명령을 반복하지 말고, 오류 문장을 보여 주고 원인을 설명한 뒤 해결책을 제안해.
 - 명령은 내 운영체제(macOS 또는 Windows)에 맞게 골라. 먼저 OS를 확인해.
+- 명령은 네가 직접 실행해. 나에게 터미널에 명령을 입력하라고 시키지 마. 내가 하는 일은 "허락"과 "브라우저에서 승인(로그인)"뿐이야.
+- 브라우저 승인이 필요한 명령(로그인, 인증)은 네가 실행해. 명령이 승인을 기다리며 멈추면 백그라운드로 실행해서 막히지 않게 하고, 출력된 주소(URL)와 코드를 그대로 보여 줘. 브라우저가 저절로 열렸다면 열렸다고 알려 줘. 내가 승인했다고 하면 결과를 확인해.
 
 [1단계] 현재 상태 확인 (읽기만)
 - OS, node -v, bun -v, pnpm -v, git --version, gh --version 을 확인해서 표로 보여 줘.
 - Gencow에 필요한 것: Node.js 22.20 이상 (ego-browser 설치에 필요), Bun, pnpm 10.33.0, git.
 
 [2단계] 없는 도구만 설치 (허락받고 하나씩)
-- macOS: Homebrew가 있으면 brew를 쓰고, 없으면 Homebrew 설치를 안내만 해 줘 (공식 사이트 안내, 내가 직접 실행).
+- macOS: Homebrew가 있으면 brew를 쓰고, 없으면 Homebrew 없이 되는 방법을 먼저 찾아. (Node.js는 공식 설치 파일 주소를 알려 주고 내가 내려받아 설치하는 것이 가장 쉬워.) Homebrew 설치는 관리자 비밀번호 입력이 필요해서 네가 대신할 수 없으니, 정말 필요할 때만 공식 사이트(https://brew.sh)의 한 줄 명령을 보여 주고 내가 입력하도록 해.
 - Windows: winget을 사용해.
 - Node.js: 22.20 이상
 - Bun: 공식 설치 방법으로 설치
 - pnpm: 10.33.0 버전으로 맞춰. (예: corepack enable 후 corepack prepare pnpm@10.33.0 --activate)
-- 설치 후 새 터미널이 필요하면 알려 줘.
+- 설치 후 새 터미널이 필요하면 알려 줘. (관리자 비밀번호가 필요한 설치는 네가 대신할 수 없어. 그때만 내가 입력해야 한다고 알려 줘.)
 
 [3단계] GitHub 로그인 확인
-- gh auth status 로 확인해. 로그인이 안 되어 있으면 gh auth login 을 안내해 줘. (내가 직접 입력해야 하는 부분은 알려 줘.)
+- gh auth status 로 확인해. 로그인이 안 되어 있으면 네가 gh auth login --web 을 실행해. 출력된 일회용 코드와 주소(https://github.com/login/device)를 보여 주면 내가 브라우저에서 코드를 입력하고 승인할게. 승인했다고 하면 gh auth status 로 다시 확인해.
 
 [4단계] Gencow OpenCode 설정 묶음 설치
 - 설치 폴더는 홈 폴더의 opencode-gencow 야. (macOS: ~/opencode-gencow, Windows: %USERPROFILE%\opencode-gencow)
@@ -44,10 +46,10 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
   1) 내가 Gencow 계정이 있는지 물어봐.
   2) 계정이 없으면 회원가입 주소 https://gencow.app/signup 을 알려 줘. 가입은 내가 브라우저에서 직접 해.
   3) 계정이 이미 있으면 가입하지 말고 https://gencow.app/login 에서 로그인하라고 안내해 줘.
-  4) 가입 또는 로그인을 마쳤다고 하면 bunx gencow@latest login 을 실행하고, 브라우저나 터미널에서 내가 해야 할 일을 알려 줘.
+  4) 가입 또는 로그인을 마쳤다고 하면 네가 bunx gencow@latest login 을 실행해. 출력된 승인 주소(URL)를 보여 주면 내가 브라우저에서 승인할게.
   5) 다시 bunx gencow@latest whoami 로 로그인된 계정이 나오는지 확인해.
 - 이어서 Gencow MCP 인증을 진행해. MCP는 로그인이 필요해(OAuth, 인증 서버 https://gencow.app):
-  1) opencode mcp auth gencow 를 실행하고, 열리는 브라우저에서 내가 로그인/승인하도록 안내해.
+  1) 네가 opencode mcp auth gencow 를 실행해. 출력된 승인 주소(URL)를 보여 주면 내가 브라우저에서 로그인/승인할게.
   2) opencode mcp list 로 gencow 가 connected 인지 확인해. 인증이 안 되어 있으면 다시 안내해.
 - 참고: "gencow auth" 라는 명령은 없어. 로그인은 gencow login 이야.
 

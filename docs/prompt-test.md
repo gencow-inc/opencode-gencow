@@ -16,7 +16,7 @@
    - 다음 명령이 있는지 확인해: /gencow-start, /gencow-deploy, /gencow-fix, /handoff
 
 3. Gencow MCP 확인
-   - gencow MCP가 연결(인증 완료)되어 있는지 확인해. 인증이 필요하다는 상태면 opencode mcp auth gencow 를 안내해.
+   - gencow MCP가 연결(인증 완료)되어 있는지 확인해. 인증이 필요하다는 상태면 네가 opencode mcp auth gencow 를 실행하고 승인 주소(URL)를 보여 줘. 내가 브라우저에서 승인할게.
    - 먼저 opencode --version 을 실행해서 버전을 알려 줘.
    - search_services, describe_service, call_service (gencow_search_services 처럼 앞에 gencow_ 가 붙은 이름일 수 있어)를 **지금 직접 호출할 수 있는 도구 목록에서** 찾을 수 있는지 확인해. (HTTP 로 우회하거나 토큰 파일을 읽지 마. 직접 호출이 안 되면 ✗ 로 적고 이유를 알려 줘.)
    - 제공되는 도구 이름을 전부 나열해. (search_services, describe_service, call_service 3개가 보여야 정상이야.)
