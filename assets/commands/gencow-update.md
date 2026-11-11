@@ -9,7 +9,8 @@ agent: gencow-helper
 
 [1단계] 최신 파일 받기
 - 설치 폴더는 홈 폴더의 opencode-gencow 야. (macOS: ~/opencode-gencow, Windows: %USERPROFILE%\opencode-gencow)
-- 폴더가 이미 있으면 그 안에서 git pull 을 실행해.
+- 폴더가 이미 있고 .git 이 있으면(git -C <폴더> rev-parse 로 확인) 그 안에서 git pull 을 실행해.
+- 폴더는 있는데 Git 저장소가 아니면(.git 없음) 지우지 말고 이름만 바꿔 보관해: opencode-gencow.bak-<오늘 날짜>. 그다음 홈 폴더에서 git clone https://github.com/gencow-inc/opencode-gencow.git 을 실행해. 보관한 폴더에 내가 만든 파일이 있을 수 있으니 "옛 폴더는 이름만 바꿔 두었다"고 알려 줘.
   - 충돌이나 수정된 파일 때문에 실패하면 강제로 덮어쓰지 말고, 오류를 보여 주고 나에게 알려 줘.
 - 폴더가 없으면 git clone https://github.com/gencow-inc/opencode-gencow.git 을 홈 폴더에서 실행해.
 - 받아 온 최신 커밋을 git log -1 --format="%h %s" 로 보여 줘.
