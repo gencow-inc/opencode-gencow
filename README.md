@@ -104,6 +104,6 @@ npm test      # Node 20 이상, 외부 의존성 없음
 
 ## 알려진 한계 / 다음 작업
 
-- 패키지 이름(`@gencow/opencode`)과 npm 소속은 미정입니다. 소속 조직은 `spaceflo-io`입니다.
+- 패키지 이름(`@gencow/opencode`)과 npm 소속은 미정입니다. 저장소는 `gencow-inc` 조직에서 관리합니다.
 - 라이선스 미지정 (공개 전에 결정).
 - 2차 후보: `init-deep`(gencow용 AGENTS.md 생성), `playwright` 화면 확인.
