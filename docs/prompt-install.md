@@ -77,8 +77,13 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 - 설치 뒤에 다시 which/where 로 확인해. 새 터미널이 필요할 수 있어.
 - 주의를 꼭 말해 줘: 로그인된 브라우저를 AI가 쓸 수 있으니, 개인 은행/메일 계정이 열려 있지 않은 수업용 계정이나 별도 프로필에서만 써야 해.
 
+[6-2단계] hyperframes (영상 만들기, 선택)
+- hyperframes 는 HTML로 영상을 만드는 도구야. 설치기가 스킬 3개(hyperframes, hyperframes-cli, hyperframes-registry)를 넣었는지 ~/.agents/skills/ 에서 확인해. 없으면 npx skills add heygen-com/hyperframes -g -a opencode -y --skill hyperframes --skill hyperframes-cli --skill hyperframes-registry 를 실행해.
+- 영상을 실제로 만들려면 FFmpeg 가 필요해. ffmpeg -version (Windows는 where ffmpeg) 로 확인하고, 없으면 허락받고 설치해 줘. (macOS: brew install ffmpeg, Windows: winget install ffmpeg)
+- 안내: 음악, 목소리, 아바타 같은 소재 생성(media-use)과 영상 복원(reverse-any-video)은 HeyGen 계정과 유료 기능이 필요해서 설치하지 않았어. 필요할 때 따로 설치한다고 알려 줘.
+
 [7단계] 마무리
-- 설치된 것, 이미 있던 것, 실패한 것을 표로 정리해 줘. (Gencow LLM 연결 결과와, ego-browser 스킬/앱 상태를 각각 한 줄씩 포함해 줘.)
+- 설치된 것, 이미 있던 것, 실패한 것을 표로 정리해 줘. (Gencow LLM 연결 결과와, ego-browser 스킬/앱 상태, hyperframes 스킬과 FFmpeg 상태를 각각 한 줄씩 포함해 줘.)
 - OpenCode를 한 번 종료했다가 다시 실행해야 새 스킬과 명령이 보인다고 알려 줘.
 - 다시 실행한 뒤 /gencow-start 를 입력해 보라고 안내해 줘.
 ```

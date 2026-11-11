@@ -3,11 +3,11 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { install, uninstall, doctor, parseJsonc, configDir, MCP_URL, EGO_INSTALL_ARGS, nodeSupportsEgo } from "../src/lib.mjs";
+import { install, uninstall, doctor, parseJsonc, configDir, MCP_URL, EGO_INSTALL_ARGS, nodeSupportsEgo, HYPERFRAMES_INSTALL_ARGS } from "../src/lib.mjs";
 
 const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), "gencow-oc-"));
 const read = (...p) => fs.readFileSync(path.join(...p), "utf8");
-const opts = (dir, extra = {}) => ({ dir, skipEgo: true, ...extra });
+const opts = (dir, extra = {}) => ({ dir, skipEgo: true, skipHyperframes: true, ...extra });
 
 test("install: 스킬/에이전트/명령 배치와 MCP 등록", async () => {
   const dir = tmp();
@@ -140,4 +140,19 @@ test("ego-browser: 전역(-g)/opencode 대상으로 설치하고 Node 22.20 미�
   await install({ dir: tmp(), platform: "darwin", nodeVersion: "20.11.0", runEgo: () => (calls++, true), log: (l) => logs.push(l) });
   assert.equal(calls, 0);
   assert.ok(logs.some((l) => l.includes("22.20")));
+});
+
+test("hyperframes: 무료 핵심 3개만 전역/opencode 대상으로 설치하고 실패해도 설치는 끝난다", async () => {
+  assert.deepEqual(HYPERFRAMES_INSTALL_ARGS.slice(0, 3), ["skills", "add", "heygen-com/hyperframes"]);
+  assert.ok(HYPERFRAMES_INSTALL_ARGS.includes("-g") && HYPERFRAMES_INSTALL_ARGS.includes("opencode"));
+  const names = HYPERFRAMES_INSTALL_ARGS.filter((_, i, a) => a[i - 1] === "--skill");
+  assert.deepEqual(names, ["hyperframes", "hyperframes-cli", "hyperframes-registry"]);
+  let calls = 0;
+  const dir = tmp();
+  await install({ dir, skipEgo: true, nodeVersion: "22.23.0", runHyperframes: () => (calls++, false) });
+  assert.equal(calls, 1);
+  assert.ok(fs.existsSync(path.join(dir, "agents/gencow-helper.md")));
+  await install({ dir: tmp(), skipEgo: true, skipHyperframes: true, runHyperframes: () => (calls++, true) });
+  await install({ dir: tmp(), skipEgo: true, nodeVersion: "20.1.0", runHyperframes: () => (calls++, true) });
+  assert.equal(calls, 1);
 });

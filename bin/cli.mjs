@@ -11,15 +11,17 @@ const HELP = `gencow-opencode — OpenCode용 Gencow 설정 묶음
 옵션:
   --dry-run            실제로 쓰지 않고 할 일만 보여 줌
   --skip-ego           ego-browser 스킬 설치를 건너뜀
+  --skip-hyperframes   hyperframes 스킬 설치를 건너뜀
   --config-dir <경로>  OpenCode 설정 폴더 직접 지정
 `;
 
 function parse(argv) {
-  const opts = { cmd: argv[0], dryRun: false, skipEgo: false, dir: undefined };
+  const opts = { cmd: argv[0], dryRun: false, skipEgo: false, skipHyperframes: false, dir: undefined };
   for (let i = 1; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--dry-run") opts.dryRun = true;
     else if (a === "--skip-ego") opts.skipEgo = true;
+    else if (a === "--skip-hyperframes") opts.skipHyperframes = true;
     else if (a === "--config-dir") opts.dir = argv[++i];
     else throw new Error(`알 수 없는 옵션: ${a}`);
   }
@@ -31,7 +33,7 @@ try {
   const dir = opts.dir ?? configDir();
   const log = (line) => console.log(line);
   if (opts.cmd === "install") {
-    await install({ dir, dryRun: opts.dryRun, skipEgo: opts.skipEgo, log });
+    await install({ dir, dryRun: opts.dryRun, skipEgo: opts.skipEgo, skipHyperframes: opts.skipHyperframes, log });
   } else if (opts.cmd === "uninstall") {
     await uninstall({ dir, dryRun: opts.dryRun, log });
   } else if (opts.cmd === "doctor") {
