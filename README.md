@@ -88,6 +88,20 @@ OpenCode 설정 폴더는 `OPENCODE_CONFIG_DIR`, 없으면 `$XDG_CONFIG_HOME/ope
 
 안전 장치: 다시 실행해도 같은 결과이고, 덮어쓰는 기존 파일과 `opencode.json`은 `.bak-<시각>`으로 백업합니다. 설정 파일이 깨져 있으면 아무것도 쓰지 않고 중단합니다.
 
+## 추가 스킬 (설치 프롬프트 6-2단계, 선택)
+
+설치기는 이 스킬들을 **기본으로 설치하지 않습니다.** 설치 프롬프트가 목록을 보여 주고, 사용자가 고른 것만 허락받고 설치합니다(원 저장소의 `npx skills add ... -g -a opencode -y` 명령). Node.js 22.20 이상이 필요합니다.
+
+| 스킬 | 출처 |
+|---|---|
+| `find-skills` | vercel-labs/skills (MIT) |
+| `frontend-design`, `webapp-testing`, `skill-creator` | anthropics/skills |
+| `diagnosing-bugs` | mattpocock/skills (MIT) |
+| `web-design-guidelines` | vercel-labs/agent-skills |
+| `hyperframes`, `hyperframes-cli`, `hyperframes-registry` (영상 만들기, FFmpeg 필요) | heygen-com/hyperframes (Apache-2.0) |
+
+HyperFrames의 `media-use`, `reverse-any-video`, `style-sampling`은 HeyGen 계정과 유료 기능이 필요해 목록에서 뺐습니다. 외부 스킬은 AI가 따르는 지시문이므로, 설치 뒤 내용을 훑어 이상한 명령이 없는지 확인하게 합니다. 일부 저장소는 라이선스가 표시되어 있지 않으니 교육 배포 전에 확인하세요.
+
 ## ego-browser (macOS/Windows만)
 
 브라우저를 에이전트가 조작하는 외부 도구입니다. 설치기는 원 저장소의 명령(`npx skills add citrolabs/ego-lite -g -a opencode -y`)을 호출할 뿐 파일을 복사하지 않습니다. 전역(`-g`)으로 `~/.agents/skills/ego-browser`에 설치되어 어느 폴더에서 열어도 로드됩니다. 이 명령은 **Node.js 22.20 이상**이 필요해서, 낮으면 건너뛰고 안내합니다. **스킬은 AI용 설명서일 뿐이고, 브라우저 앱(`ego-browser` 명령)은 따로 설치해야 합니다.** 설치기는 스킬만 넣고, 앱은 설치 프롬프트 6단계가 안내합니다(공식 안내 https://lite.ego.app/). `doctor`는 스킬과 앱을 따로 표시합니다. Linux는 아직 지원되지 않아 건너뜁니다. 설치 실패는 경고만 하고 나머지 설치는 완료됩니다.
