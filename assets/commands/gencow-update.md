@@ -29,7 +29,7 @@ agent: gencow-helper
 
 [4단계] 점검
 - node bin/cli.mjs doctor 를 실행하고 결과를 보여 줘.
-- opencode mcp list 로 gencow 가 connected 인지 확인해.
+- opencode mcp list 로 gencow 가 connected 인지 확인해. (이 명령은 터미널용 opencode 프로그램이라 Desktop 앱과 버전이 다를 수 있어. 이 명령 자체가 오류(예: no such column)로 실패하면 "✗ 실패"로 단정하지 말고, 오류 문장을 그대로 보여 주고 "Desktop 앱에서는 설정 > MCP 화면에서 gencow 가 연결 상태인지 직접 확인해 달라"고 안내해. 그리고 opencode --version 과 which -a opencode 결과를 함께 보여 줘.)
   "needs authentication" 이면 네가 opencode mcp auth gencow 를 실행해(막히면 백그라운드로). 출력된 승인 주소(URL)를 보여 주면 내가 브라우저에서 승인할게.
 
 [5단계] 마무리
