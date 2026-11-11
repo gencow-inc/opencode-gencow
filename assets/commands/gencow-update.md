@@ -22,7 +22,7 @@ agent: gencow-helper
 
 [3단계] Gencow LLM 연결 갱신
 - bunx gencow@latest whoami 로 로그인되어 있으면 bunx gencow@latest opencode setup 을 실행해. 이미 연결되어 있으면 "Already connected" 로 끝나고, 예전 방식으로 연결된 설치(OpenCode 데스크톱에서 키를 못 읽던 경우)는 새 토큰 없이 자동으로 고쳐져. 토큰은 출력하지 마.
-- 로그인이 안 되어 있으면 이 단계는 건너뛰고, gencow login 후 다시 실행하라고 알려 줘.
+- 로그인이 안 되어 있으면 이 단계는 건너뛰고, bunx gencow@latest login 후 다시 실행하라고 알려 줘.
 - 실패하면 괄호 안의 코드와 안내 문장을 그대로 보여 주고 반복 실행하지 마.
 
 [4단계] 점검

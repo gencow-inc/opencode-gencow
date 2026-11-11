@@ -51,7 +51,7 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 - 이어서 Gencow MCP 인증을 진행해. MCP는 로그인이 필요해(OAuth, 인증 서버 https://gencow.app):
   1) 네가 opencode mcp auth gencow 를 실행해. 출력된 승인 주소(URL)를 보여 주면 내가 브라우저에서 로그인/승인할게.
   2) opencode mcp list 로 gencow 가 connected 인지 확인해. 인증이 안 되어 있으면 다시 안내해.
-- 참고: "gencow auth" 라는 명령은 없어. 로그인은 gencow login 이야.
+- 참고: "gencow auth" 라는 명령은 없어. 로그인은 bunx gencow@latest login 이야.
 
 [5-2단계] Gencow LLM을 OpenCode에 연결 (권장)
 - 이 단계는 OpenCode에서 Gencow 모델(gencow/llm/code)을 쓰게 해 줘. 사용량은 **내 Gencow 크레딧**으로 계산돼. 이 말을 먼저 알려 주고 내 허락을 받아.
@@ -59,7 +59,7 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 - 이미 /connect 로 gencow 를 직접 연결한 적이 있으면, 먼저 OpenCode 에서 그 연결을 해제하라고 안내해 줘. (직접 연결이 설정보다 먼저 쓰여서 충돌할 수 있어.)
 - bunx gencow@latest opencode setup 을 실행해. 토큰은 화면에 나오지 않아. 직접 열어 보거나 출력하지 마.
   - 성공: "Gencow LLM connected: gencow/llm/code" 또는 "Already connected".
-  - 실패하면 괄호 안의 코드와 안내 문장을 그대로 보여 주고, 안내된 대로 해결해. (예: GENCOW_NOT_LOGGED_IN 이면 gencow login 을 다시 안내, OPENCODE_CONFIG_HAS_COMMENTS 이면 설정 파일에 주석이 있어서 건드리지 않은 것이니 안내대로 처리.)
+  - 실패하면 괄호 안의 코드와 안내 문장을 그대로 보여 주고, 안내된 대로 해결해. (예: GENCOW_NOT_LOGGED_IN 이면 bunx gencow@latest login 을 다시 안내, OPENCODE_CONFIG_HAS_COMMENTS 이면 설정 파일에 주석이 있어서 건드리지 않은 것이니 안내대로 처리.)
   - 같은 명령을 반복해서 실행하지 마.
 - 끝나면 OpenCode(데스크톱 앱이면 Cmd+Q / 완전 종료)를 다시 실행한 뒤 모델 선택에서 gencow/llm/code 를 고르면 된다고 알려 줘.
 - 모델 목록에는 gencow/llm/code 하나만 보여. 다른 모델은 아직 열려 있지 않아.

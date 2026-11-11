@@ -9,24 +9,24 @@ description: 만든 Gencow 앱을 개발 환경에 배포하고 잘 올라갔는
 
 ## 배포 전 점검 (매번)
 
-1. 로그인 상태: `gencow whoami`. 안 되어 있으면 `gencow login`을 안내한다.
+1. 로그인 상태: `bunx gencow@latest whoami`. 안 되어 있으면 `bunx gencow@latest login`을 안내한다.
 2. 어떤 앱, 어떤 환경으로 올라가는지 **사용자에게 말해 준다.** 앱 이름이 틀리면 배포하지 않는다.
 3. 로컬에서 먼저 동작하는지 확인했는지 묻는다.
-4. DB 스키마를 바꿨다면 `gencow db:generate`로 만든 마이그레이션 파일을 보여 주고, 반드시 확인받는다. 이미 적용된 마이그레이션 파일은 수정하지 않는다.
+4. DB 스키마를 바꿨다면 `bunx gencow@latest db:generate`로 만든 마이그레이션 파일을 보여 주고, 반드시 확인받는다. 이미 적용된 마이그레이션 파일은 수정하지 않는다.
 
 ## 배포
 
-- 백엔드: `gencow deploy`
+- 백엔드: `bunx gencow@latest deploy`
 - 화면(정적 파일)만 올릴 때는 **빌드 결과 폴더**(예: `dist/`)를 함께 적는다.
-  - 백엔드 코드가 없으면: `gencow static dist`
-  - 백엔드와 같이 올리면: `gencow deploy --static dist`
+  - 백엔드 코드가 없으면: `bunx gencow@latest static dist`
+  - 백엔드와 같이 올리면: `bunx gencow@latest deploy --static dist`
   - 폴더 이름은 프로젝트의 빌드 결과 폴더에 맞춘다. 모르면 사용자에게 먼저 묻는다.
 
 ## 배포 후 확인
 
-1. `gencow deploy status`로 상태를 본다.
+1. `bunx gencow@latest deploy status`로 상태를 본다.
 2. 앱 주소를 열어 화면이 뜨는지 확인한다.
-3. 실패했으면 `gencow deploy logs`로 로그를 읽고 `gencow-troubleshoot` 스킬로 넘어간다.
+3. 실패했으면 `bunx gencow@latest deploy logs`로 로그를 읽고 `gencow-troubleshoot` 스킬로 넘어간다.
 
 ## 하지 말 것
 
