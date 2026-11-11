@@ -9,11 +9,6 @@ export const EGO_SKILL_SOURCE = "citrolabs/ego-lite";
 /** 어느 폴더에서 열어도 로드되도록 전역(-g) 설치, OpenCode 대상(-a opencode), 질문 생략(-y). */
 export const EGO_INSTALL_ARGS = ["skills", "add", EGO_SKILL_SOURCE, "-g", "-a", "opencode", "-y"];
 export const EGO_INSTALL_CMD = `npx ${EGO_INSTALL_ARGS.join(" ")}`;
-// HyperFrames(HTML로 영상 만들기) 스킬. 무료 핵심 3개만 설치한다.
-// media-use / reverse-any-video / style-sampling 은 HeyGen 계정(유료 기능 포함)이 필요해 기본에서 뺀다.
-export const HYPERFRAMES_SKILLS = ["hyperframes", "hyperframes-cli", "hyperframes-registry"];
-export const HYPERFRAMES_INSTALL_ARGS = ["skills", "add", "heygen-com/hyperframes", "-g", "-a", "opencode", "-y", ...HYPERFRAMES_SKILLS.flatMap((n) => ["--skill", n])];
-export const HYPERFRAMES_INSTALL_CMD = `npx ${HYPERFRAMES_INSTALL_ARGS.join(" ")}`;
 const EGO_MIN_NODE = [22, 20];
 
 /** skills CLI 는 Node 22.20 이상이 필요하다. */
@@ -118,24 +113,14 @@ function defaultRunEgo() {
   return r.status === 0;
 }
 
-function defaultRunHyperframes() {
-  const r = spawnSync("npx", ["--yes", ...HYPERFRAMES_INSTALL_ARGS], {
-    stdio: "inherit",
-    shell: process.platform === "win32",
-  });
-  return r.status === 0;
-}
-
 export async function install({
   dir,
   dryRun = false,
   skipEgo = false,
-  skipHyperframes = false,
   log = () => {},
   platform = process.platform,
   nodeVersion = process.versions.node,
   runEgo = defaultRunEgo,
-  runHyperframes = defaultRunHyperframes,
 } = {}) {
   const prefix = dryRun ? "[미리보기] " : "";
   const previous = readManifest(dir);
@@ -204,19 +189,6 @@ export async function install({
     log(`ego-browser 스킬 설치 중: ${EGO_INSTALL_CMD}`);
     if (!runEgo()) log("경고: ego-browser 설치에 실패했습니다. 나머지 설치는 완료되었습니다. 나중에 위 명령을 직접 실행하세요.");
     else log("ego-browser 스킬만 설치되었습니다. 브라우저 앱은 따로 설치해야 합니다 (https://lite.ego.app/). 수업용 계정/프로필로만 사용하세요.");
-  }
-
-  // HyperFrames 스킬 (선택적 외부 스킬, 모든 OS)
-  if (skipHyperframes) {
-    log("hyperframes: --skip-hyperframes 로 건너뜀");
-  } else if (!nodeSupportsEgo(nodeVersion)) {
-    log(`hyperframes: Node.js 22.20 이상이 필요합니다 (현재 ${nodeVersion}). Node 를 올린 뒤 다시 실행하세요.`);
-  } else if (dryRun) {
-    log(`${prefix}hyperframes 스킬 설치: ${HYPERFRAMES_INSTALL_CMD}`);
-  } else {
-    log(`hyperframes 스킬 설치 중: ${HYPERFRAMES_INSTALL_CMD}`);
-    if (!runHyperframes()) log("경고: hyperframes 설치에 실패했습니다. 나머지 설치는 완료되었습니다. 나중에 위 명령을 직접 실행하세요.");
-    else log("hyperframes 스킬이 설치되었습니다. 영상 렌더링에는 FFmpeg 가 필요합니다 (스킬 설치와는 별개).");
   }
 
   log(`${prefix}Gencow MCP는 로그인이 필요합니다. 다음 명령으로 인증하세요: opencode mcp auth gencow`);
@@ -332,15 +304,6 @@ export async function doctor({
     hasCommand("ego-browser", platform)
       ? pass("ego-browser 앱(명령) 설치됨")
       : warn("ego-browser 앱이 아직 설치되지 않았습니다 (스킬만 있으면 브라우저는 쓸 수 없습니다). https://lite.ego.app/ 에서 설치하세요.");
-  }
-  {
-    const places = [path.join(dir, "skills", "hyperframes"), path.join(home, ".agents", "skills", "hyperframes")];
-    places.some((p) => fs.existsSync(p))
-      ? pass("hyperframes 스킬 설치됨")
-      : warn(`hyperframes 스킬이 없습니다 (선택). 설치: ${HYPERFRAMES_INSTALL_CMD}`);
-    hasCommand("ffmpeg", platform)
-      ? pass("ffmpeg 설치됨 (영상 렌더링 가능)")
-      : warn("ffmpeg 가 없습니다. hyperframes 로 영상을 만들려면 설치하세요 (macOS: brew install ffmpeg, Windows: winget install ffmpeg).");
   }
   return ok;
 }

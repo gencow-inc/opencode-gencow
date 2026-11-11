@@ -35,7 +35,7 @@ node bin/cli.mjs install
 | `doctor` | 설치 상태 점검 (OpenCode, 파일, MCP 등록·연결, ego-browser) |
 | `uninstall` | 설치한 항목만 제거 |
 
-옵션: `--dry-run`(미리보기), `--skip-ego`(ego-browser 건너뜀), `--skip-hyperframes`(hyperframes 건너뜀), `--config-dir <경로>`.
+옵션: `--dry-run`(미리보기), `--skip-ego`(ego-browser 건너뜀), `--config-dir <경로>`.
 
 설치 후 OpenCode를 실행하고 `/gencow-start`를 입력하세요.
 
@@ -87,10 +87,6 @@ OpenCode 설정 폴더는 `OPENCODE_CONFIG_DIR`, 없으면 `$XDG_CONFIG_HOME/ope
 - `.gencow-opencode.json` 에 설치 기록 (제거할 때 사용)
 
 안전 장치: 다시 실행해도 같은 결과이고, 덮어쓰는 기존 파일과 `opencode.json`은 `.bak-<시각>`으로 백업합니다. 설정 파일이 깨져 있으면 아무것도 쓰지 않고 중단합니다.
-
-## hyperframes (영상 만들기)
-
-[HeyGen HyperFrames](https://github.com/heygen-com/hyperframes)(Apache-2.0)는 HTML로 영상을 만드는 도구입니다. 설치기는 원 저장소의 명령(`npx skills add heygen-com/hyperframes -g -a opencode -y --skill ...`)으로 **무료 핵심 스킬 3개**(`hyperframes`, `hyperframes-cli`, `hyperframes-registry`)만 설치합니다. Node.js 22.20 이상이 필요하고, 영상 렌더링에는 FFmpeg가 별도로 필요합니다. `media-use`, `reverse-any-video`, `style-sampling`은 HeyGen 계정(유료 기능 포함)이 필요해 기본에서 뺐습니다.
 
 ## ego-browser (macOS/Windows만)
 
