@@ -50,6 +50,17 @@ Gencow MCP(`mcp.gencow.com`)는 **Gencow 계정으로 로그인해야** 쓸 수 
 
 설치 프롬프트가 이 과정을 안내합니다. 로그인하지 않아도 스킬, 에이전트, 명령은 동작하지만, MCP 기반 문서 검색과 오류 진단은 쓸 수 없습니다.
 
+## Gencow LLM 연결 (OpenCode에서 `gencow/llm/code` 사용)
+
+로그인 후 `bunx gencow@latest opencode setup` 한 번이면 OpenCode(데스크톱·CLI)에서 Gencow 모델을 쓸 수 있습니다. 사용량은 **본인 Gencow 크레딧**으로 계산됩니다. 설치 프롬프트(5-2단계)와 `/gencow-update`가 이 명령을 안내합니다.
+
+- 모델은 `gencow/llm/code` 하나만 열려 있습니다.
+- 토큰은 화면에 출력되지 않습니다. 키는 `~/.gencow/opencode.key`(권한 600)에 저장되고, OpenCode 설정(`provider.gencow.options.apiKey`)은 `{file:~/.gencow/opencode.key}`로 이 파일을 참조합니다. 이 방식은 OpenCode 데스크톱이 자체 자격증명 저장소를 쓰기 때문에 필요합니다.
+- 이미 `/connect`로 `gencow`를 직접 연결했다면 먼저 해제하세요.
+- 적용하려면 OpenCode를 완전히 종료했다가 다시 실행합니다.
+- 토큰 폐기: Gencow 대시보드 > 계정 설정 > 연결된 도구.
+- 이 저장소의 설치기(`install`)는 토큰을 만들지 않습니다. 로그인과 크레딧 사용 동의가 필요해서 프롬프트가 안내하는 별도 단계로 둡니다.
+
 ## 들어 있는 것
 
 | 구분 | 이름 | 설명 |
