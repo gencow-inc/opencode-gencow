@@ -66,12 +66,16 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 
 [6단계] ego-browser (선택, macOS/Windows만)
 - 이건 AI가 브라우저를 조작하는 도구야. Linux는 지원되지 않으니 건너뛰어.
-- 설치기가 이미 ego-browser 를 설치했는지 확인해 (~/.agents/skills/ego-browser 가 있어야 해). 없으면 npx skills add citrolabs/ego-lite -g -a opencode -y 를 안내해 줘. 이 명령은 Node.js 22.20 이상이 필요해.
-- 브라우저 앱은 처음 사용할 때 설치 안내가 나온다고 알려 줘.
+- ego-browser 는 두 부분이야. 헷갈리지 않게 따로 확인해 줘.
+  1) 스킬(AI용 설명서): ~/.agents/skills/ego-browser 폴더가 있어야 해. 없으면 npx skills add citrolabs/ego-lite -g -a opencode -y 를 실행해. (Node.js 22.20 이상 필요)
+  2) 앱(실제 브라우저 프로그램): ego-browser 명령이 있어야 해. macOS는 which ego-browser, Windows는 where ego-browser 로 확인해.
+- 스킬만 있고 앱이 없으면 "설치 완료"라고 하지 마. "스킬만 설치됨, 앱은 아직"이라고 말해.
+- 앱이 없으면 설치할지 물어보고, 허락하면 설치해. 공식 안내는 https://lite.ego.app/ 이고, 설치 방법은 설치된 스킬의 references/install.md 에도 있어. 설치 파일은 네가 임시 폴더에 내려받아 실행해. 설치 후 첫 실행 안내(온보딩)는 내가 화면에서 직접 할게. Windows SmartScreen 경고가 뜨면 내가 "추가 정보 > 실행"을 누를게.
+- 설치 뒤에 다시 which/where 로 확인해. 새 터미널이 필요할 수 있어.
 - 주의를 꼭 말해 줘: 로그인된 브라우저를 AI가 쓸 수 있으니, 개인 은행/메일 계정이 열려 있지 않은 수업용 계정이나 별도 프로필에서만 써야 해.
 
 [7단계] 마무리
-- 설치된 것, 이미 있던 것, 실패한 것을 표로 정리해 줘. (Gencow LLM 연결 결과도 한 줄 포함해 줘.)
+- 설치된 것, 이미 있던 것, 실패한 것을 표로 정리해 줘. (Gencow LLM 연결 결과와, ego-browser 스킬/앱 상태를 각각 한 줄씩 포함해 줘.)
 - OpenCode를 한 번 종료했다가 다시 실행해야 새 스킬과 명령이 보인다고 알려 줘.
 - 다시 실행한 뒤 /gencow-start 를 입력해 보라고 안내해 줘.
 ```

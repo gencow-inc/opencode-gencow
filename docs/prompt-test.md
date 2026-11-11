@@ -37,7 +37,7 @@
    - 틀렸거나 MCP 문서에 없는 명령이 있으면 어느 스킬의 어느 줄인지 알려 줘.
 
 6. ego-browser 확인 (macOS/Windows만)
-   - ego-browser 스킬이 인식되는지, 브라우저 앱 설치 안내가 나오는지만 확인해. 실제 사이트 조작은 하지 마.
+   - ego-browser 스킬(~/.agents/skills/ego-browser)과 앱(which/where ego-browser 로 명령 존재)을 각각 확인하고, 앱이 없으면 "스킬만 설치됨"으로 적어 줘. 실제 사이트 조작은 하지 마.
 
 7. 초급자 시나리오 점검
    - 내가 "할 일 목록 앱을 만들고 싶어"라고 말했다고 가정하고, gencow-helper가 어떻게 안내할지 첫 응답만 보여 줘. (명령은 실행하지 마.)

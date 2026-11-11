@@ -95,6 +95,11 @@ function readManifest(dir) {
   }
 }
 
+function hasCommand(name, platform = process.platform) {
+  const r = spawnSync(platform === "win32" ? "where" : "which", [name], { stdio: "ignore" });
+  return r.status === 0;
+}
+
 /** ego-browser 스킬은 macOS/Windows만 지원된다. 원 저장소의 설치 명령을 그대로 호출한다. */
 export function egoSupported(platform = process.platform) {
   return platform === "darwin" || platform === "win32";
@@ -183,7 +188,7 @@ export async function install({
   } else {
     log(`ego-browser 스킬 설치 중: ${EGO_INSTALL_CMD}`);
     if (!runEgo()) log("경고: ego-browser 설치에 실패했습니다. 나머지 설치는 완료되었습니다. 나중에 위 명령을 직접 실행하세요.");
-    else log("ego-browser 브라우저 앱은 첫 사용 때 설치 안내가 나옵니다. 수업용 계정/프로필로만 사용하세요.");
+    else log("ego-browser 스킬만 설치되었습니다. 브라우저 앱은 따로 설치해야 합니다 (https://lite.ego.app/). 수업용 계정/프로필로만 사용하세요.");
   }
 
   log(`${prefix}Gencow MCP는 로그인이 필요합니다. 다음 명령으로 인증하세요: opencode mcp auth gencow`);
@@ -293,8 +298,12 @@ export async function doctor({
       path.join(home, ".claude", "skills", "ego-browser"),
     ];
     places.some((p) => fs.existsSync(p))
-      ? pass("ego-browser 스킬 설치됨")
+      ? pass("ego-browser 스킬(AI용 설명서) 설치됨")
       : warn(`ego-browser 스킬이 없습니다 (선택). 설치: ${EGO_INSTALL_CMD}`);
+    // 스킬만으로는 브라우저를 쓸 수 없다. 앱(명령)은 별도로 설치해야 한다.
+    hasCommand("ego-browser", platform)
+      ? pass("ego-browser 앱(명령) 설치됨")
+      : warn("ego-browser 앱이 아직 설치되지 않았습니다 (스킬만 있으면 브라우저는 쓸 수 없습니다). https://lite.ego.app/ 에서 설치하세요.");
   }
   return ok;
 }
