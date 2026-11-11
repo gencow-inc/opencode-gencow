@@ -35,6 +35,7 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 
 [4단계] Gencow OpenCode 설정 묶음 설치
 - 설치 폴더는 홈 폴더의 opencode-gencow 야. (macOS: ~/opencode-gencow, Windows: %USERPROFILE%\opencode-gencow)
+- 폴더가 이미 있으면 먼저 git -C <설치 폴더> remote set-url origin https://github.com/gencow-inc/opencode-gencow.git 을 실행해 저장소 주소를 새 주소로 맞춰. (저장소가 gencow-inc 로 옮겨졌어. 이미 같은 주소여도 괜찮아.)
 - 폴더가 이미 있으면 항상 폴더 안에서 실행해: git -C <설치 폴더> pull (홈 폴더 같은 다른 위치에서 git pull 을 하지 마). 먼저 ls -a <설치 폴더> 로 .git 이 있는지 눈으로 확인해.
 - ls -a 로 봤을 때 .git 이 정말 없을 때만(있는데 git 이 실패하면 이름을 바꾸지 말고 오류 문장을 그대로 보여 주고 멈춰) 지우지 말고 이름만 바꿔 보관해: opencode-gencow.bak-<오늘 날짜>. 그다음 홈 폴더에서 git clone https://github.com/gencow-inc/opencode-gencow.git 을 실행해. 보관한 폴더에 내가 만든 파일이 있을 수 있으니 "옛 폴더는 이름만 바꿔 두었다"고 알려 줘.
 - 폴더가 없으면 홈 폴더에서 git clone https://github.com/gencow-inc/opencode-gencow.git 을 실행해.
