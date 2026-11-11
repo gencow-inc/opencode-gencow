@@ -26,6 +26,12 @@
 4. 로그인 확인
    - bunx gencow@latest whoami 로 로그인된 계정이 나오는지 확인해. (토큰은 출력하지 마.)
 
+4-2. Gencow LLM 연결 확인 (읽기만, 토큰은 절대 출력하지 마)
+   - OpenCode 모델 목록에 gencow/llm/code 가 있는지 확인해. (opencode models gencow)
+   - ~/.gencow/opencode.key 파일이 있는지, 권한이 600(macOS)인지 존재 여부만 확인해. 내용은 열지 마.
+   - ~/.config/opencode/opencode.json 의 provider.gencow 에 baseURL 과 apiKey 의 {file:...} 참조가 있는지 확인해. (키 값 자체가 적혀 있으면 ✗)
+   - 현재 선택한 모델이 gencow/llm/code 라면 같은 대화가 정상 응답하는지로 갈음해. 아니라면 직접 호출은 크레딧이 차감되니 하지 말고 "수동 확인 필요"로 적어 줘.
+
 5. 스킬 내용 검증
    - gencow-getting-started와 gencow-deploy-my-app 스킬에 적힌 gencow 명령(init, dev --local, deploy, deploy status, whoami 등)이 MCP 문서의 내용과 일치하는지 비교해.
    - 틀렸거나 MCP 문서에 없는 명령이 있으면 어느 스킬의 어느 줄인지 알려 줘.

@@ -20,11 +20,16 @@ agent: gencow-helper
 - 출력에서 "업데이트" 또는 "설치"로 표시된 파일 목록을 보여 줘.
   모두 "이미 최신"이면 그렇다고 알려 줘.
 
-[3단계] 점검
+[3단계] Gencow LLM 연결 갱신
+- bunx gencow@latest whoami 로 로그인되어 있으면 bunx gencow@latest opencode setup 을 실행해. 이미 연결되어 있으면 "Already connected" 로 끝나고, 예전 방식으로 연결된 설치(OpenCode 데스크톱에서 키를 못 읽던 경우)는 새 토큰 없이 자동으로 고쳐져. 토큰은 출력하지 마.
+- 로그인이 안 되어 있으면 이 단계는 건너뛰고, gencow login 후 다시 실행하라고 알려 줘.
+- 실패하면 괄호 안의 코드와 안내 문장을 그대로 보여 주고 반복 실행하지 마.
+
+[4단계] 점검
 - node bin/cli.mjs doctor 를 실행하고 결과를 보여 줘.
 - opencode mcp list 로 gencow 가 connected 인지 확인해.
   "needs authentication" 이면 opencode mcp auth gencow 를 안내해 줘. (브라우저 로그인은 내가 해.)
 
-[4단계] 마무리
+[5단계] 마무리
 - 바뀐 것, 그대로인 것, 실패한 것을 표로 정리해 줘.
-- 새 내용은 OpenCode를 완전히 종료했다가 다시 실행해야 적용된다고 알려 주고, 여기서 멈춰 줘.
+- 새 내용은 OpenCode를 완전히 종료했다가 다시 실행해야 적용된다고 알려 주고(Gencow LLM 연결을 갱신했다면 데스크톱 앱은 Cmd+Q 로 완전히 종료), 여기서 멈춰 줘.
