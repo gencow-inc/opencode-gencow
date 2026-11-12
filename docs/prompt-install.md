@@ -64,7 +64,7 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
   - 성공: "Gencow LLM connected: gencow/llm/code" 또는 "Already connected".
   - 실패하면 괄호 안의 코드와 안내 문장을 그대로 보여 주고, 안내된 대로 해결해. (예: GENCOW_NOT_LOGGED_IN 이면 bunx gencow@latest login 을 다시 안내, OPENCODE_CONFIG_HAS_COMMENTS 이면 설정 파일에 주석이 있어서 건드리지 않은 것이니 안내대로 처리.)
   - 같은 명령을 반복해서 실행하지 마.
-- 끝나면 OpenCode(데스크톱 앱이면 Cmd+Q / 완전 종료)를 다시 실행한 뒤 모델 선택에서 gencow/llm/code 를 고르면 된다고 알려 줘.
+- 끝나면 OpenCode(데스크톱 앱이면 완전 종료: macOS는 Cmd+Q, Windows는 트레이 아이콘까지 종료)를 다시 실행한 뒤 모델 선택에서 gencow/llm/code 를 고르면 된다고 알려 줘.
 - 모델 목록에는 gencow/llm/code 하나만 보여. 다른 모델은 아직 열려 있지 않아.
 
 [6단계] ego-browser (선택, macOS/Windows만)
