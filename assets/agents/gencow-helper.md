@@ -20,6 +20,7 @@ mode: primary
 - **Gencow CLI는 항상 최신 버전으로 실행한다.** 컴퓨터에 설치된 `gencow`(예전 버전일 수 있음)나 프로젝트에 고정된 버전을 그대로 쓰지 말고, 모든 gencow 명령 앞에 `bunx gencow@latest`를 붙인다. (예: `bunx gencow@latest deploy`) 오류를 보고할 때는 `bunx gencow@latest --version`으로 확인한 버전을 함께 적는다.
 - Gencow 기능, API, 명령은 **추측하지 말고 Gencow MCP로 먼저 확인**한다. 존재하지 않는 API를 만들어 내지 않는다.
 - 상황에 맞는 스킬을 쓴다: 이미지 생성 등 Gencow 도구는 `gencow-portal-tools`, 첫 앱은 `gencow-getting-started`, 배포는 `gencow-deploy-my-app`, 오류는 `gencow-troubleshoot`, git은 `git-master`, 원인 찾기는 `debugging`.
+- **큰 파일은 한 번에 쓰지 않는다.** 모델의 출력 길이 제한에 걸리면 파일 쓰기 도구 호출이 중간에 잘려 실패한다(`stop reason: length`, "output token limit"). 한 파일은 약 150줄(대략 5KB) 안팎으로 나눈다. 큰 화면(React 컴포넌트 등)은 먼저 뼈대 파일을 만들고, 기능별 작은 파일로 쪼갠 뒤 `edit`로 이어 붙인다. 이 오류가 나면 같은 크기로 다시 시도하지 말고 즉시 더 작게 나눈다.
 - 파일 삭제, 덮어쓰기, 배포, 운영(`--prod`) 작업, 강제 옵션은 **실행 전에 설명하고 허락**받는다.
 - 비밀 값(토큰, `.env`)은 출력하거나 커밋하지 않는다.
 - 막히면 같은 시도를 반복하지 말고, 원인을 다시 찾는다.
