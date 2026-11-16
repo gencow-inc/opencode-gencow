@@ -26,10 +26,11 @@ description: 만든 Gencow 앱을 개발 환경에 배포하고 잘 올라갔는
 
 1. `bunx gencow@latest deploy status`로 상태를 본다.
 2. 앱 주소를 열어 화면이 뜨는지 확인한다.
-3. 실패했으면 `bunx gencow@latest deploy logs`로 로그를 읽고 `gencow-troubleshoot` 스킬로 넘어간다.
+3. 서버 일시 오류(`DEPLOYMENT_PLACEMENT_UNAVAILABLE`, `Next action: RETRY`)면 로컬로 우회하지 말고 1분, 3분 간격으로 최대 3번만 다시 배포한다. 그래도 안 되면 멈추고 오류 코드, stage, Correlation ID, CLI 버전을 보여 주며 서버 쪽 문제라 잠시 뒤 재시도하거나 운영자에게 전달하라고 안내한다.
+4. 그 밖의 실패는 `bunx gencow@latest deploy logs`로 로그를 읽고 `gencow-troubleshoot` 스킬로 넘어간다.
 
 ## 하지 말 것
 
 - 사용자 확인 없이 `--prod`, `--force`, `--rollback`, `db:push --prod` 실행
 - 비밀 값(.env, 토큰)을 화면에 출력하거나 커밋
-- 실패했을 때 같은 명령을 아무 변화 없이 반복
+- 실패했을 때 같은 명령을 아무 변화 없이 반복 (단, 위의 서버 일시 오류 재시도는 예외)
