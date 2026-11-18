@@ -2,7 +2,17 @@
 
 [OpenCode](https://opencode.ai)에서 Gencow를 쉽게 쓰기 위한 설정 묶음입니다. 초급자와 교육용을 대상으로, 어렵거나 복잡한 기능은 넣지 않았습니다.
 
-> 상태: 비공개 초안(v0.1.0). 아직 npm에 발행하지 않았습니다.
+> 상태: 초안(v0.1.0), 공개 저장소. 아직 npm에 발행하지 않았습니다.
+
+## 가장 쉬운 설치 (링크만 붙여넣기)
+
+OpenCode를 열고 아래 한 줄만 입력하세요. OpenCode가 문서를 읽고 필요한 것을 하나씩 설치하며, 사용자는 허락하고 브라우저에서 로그인·승인만 하면 됩니다.
+
+```
+https://raw.githubusercontent.com/gencow-inc/opencode-gencow/main/docs/prompt-install.md 이 문서대로 Gencow 설치해줘
+```
+
+(GitHub 화면 주소 `https://github.com/gencow-inc/opencode-gencow/blob/main/docs/prompt-install.md`를 줘도 동작하는 것을 확인했습니다.) 문서를 읽지 못하는 모델이면 [설치 프롬프트](docs/prompt-install.md)의 코드 블록을 복사해 붙여넣으세요.
 
 ## 처음 쓰는 방법 (OpenCode에 붙여넣기)
 
@@ -15,7 +25,7 @@
 
 ## 설치 (GitHub에서 바로)
 
-아직 npm에 발행하지 않았으므로 GitHub 저장소를 직접 사용합니다. 비공개 저장소라서 **설치할 컴퓨터에서 이 저장소에 접근 권한이 있는 GitHub 계정으로 로그인**되어 있어야 합니다 (`gh auth login` 또는 git 자격 증명). 먼저 OpenCode(1.4.0 이상)와 Node.js 20 이상이 필요합니다.
+아직 npm에 발행하지 않았으므로 GitHub 저장소를 직접 사용합니다. 공개 저장소라 GitHub 로그인은 필요 없습니다. 먼저 OpenCode(1.4.0 이상)와 Node.js 20 이상이 필요합니다.
 
 ```bash
 # 방법 1: 한 줄 (권장)

@@ -15,7 +15,7 @@ agent: gencow-helper
   - 충돌이나 수정된 파일 때문에 실패하면 강제로 덮어쓰지 말고, 오류를 보여 주고 나에게 알려 줘.
 - 폴더가 없으면 git clone https://github.com/gencow-inc/opencode-gencow.git 을 홈 폴더에서 실행해.
 - 받아 온 최신 커밋을 git log -1 --format="%h %s" 로 보여 줘.
-- 접근 권한 오류가 나면 gh auth status 로 GitHub 로그인을 확인하고, 안 되어 있으면 네가 gh auth login --web 을 실행하고, 출력된 일회용 코드와 주소를 보여 줘. 내가 브라우저에서 승인할게.
+- 받기에 실패하면 인터넷 연결을 확인하고 오류 문장을 그대로 보여 줘. (저장소는 공개라 GitHub 로그인은 필요 없어.)
 
 [2단계] 다시 설치
 - 그 폴더에서 node bin/cli.mjs install 을 실행해. (npx github:... 는 예전 버전을 재사용할 수 있으니 쓰지 마.)

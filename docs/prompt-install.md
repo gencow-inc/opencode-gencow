@@ -3,7 +3,9 @@
 OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode가 Gencow에 필요한 도구 설치부터 로그인까지 안내합니다.
 설치가 끝나면 [테스트 프롬프트](prompt-test.md)로 검증하세요.
 
-사전 조건: OpenCode 설치, 비공개 저장소(`gencow-inc/opencode-gencow`)에 접근 가능한 GitHub 로그인.
+사전 조건: OpenCode 설치뿐입니다. 저장소(`gencow-inc/opencode-gencow`)가 공개라서 GitHub 로그인은 필요 없습니다.
+
+링크만 줘도 됩니다: OpenCode에 `https://raw.githubusercontent.com/gencow-inc/opencode-gencow/main/docs/prompt-install.md 이 문서대로 Gencow 설치해줘` 라고 입력하세요.
 
 ```
 너는 Gencow 개발 환경 설치 도우미야. 나는 초급자야. 쉬운 한국어로 짧게 말하고,
@@ -19,7 +21,7 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 - 브라우저 승인이 필요한 명령(로그인, 인증)은 네가 실행해. 명령이 승인을 기다리며 멈추면 백그라운드로 실행해서 막히지 않게 하고, 출력된 주소(URL)와 코드를 그대로 보여 줘. 브라우저가 저절로 열렸다면 열렸다고 알려 줘. 내가 승인했다고 하면 결과를 확인해.
 
 [1단계] 현재 상태 확인 (읽기만)
-- OS, node -v, bun -v, pnpm -v, git --version, gh --version 을 확인해서 표로 보여 줘.
+- OS, node -v, bun -v, pnpm -v, git --version 을 확인해서 표로 보여 줘.
 - Gencow에 필요한 것: Node.js 22.20 이상 (ego-browser 설치에 필요), Bun, pnpm 10.33.0, git.
 
 [2단계] 없는 도구만 설치 (허락받고 하나씩)
@@ -30,8 +32,8 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 - pnpm: 10.33.0 버전으로 맞춰. (예: corepack enable 후 corepack prepare pnpm@10.33.0 --activate)
 - 설치 후 새 터미널이 필요하면 알려 줘. (관리자 비밀번호가 필요한 설치는 네가 대신할 수 없어. 그때만 내가 입력해야 한다고 알려 줘.)
 
-[3단계] GitHub 로그인 확인
-- gh auth status 로 확인해. 로그인이 안 되어 있으면 네가 gh auth login --web 을 실행해. 출력된 일회용 코드와 주소(https://github.com/login/device)를 보여 주면 내가 브라우저에서 코드를 입력하고 승인할게. 승인했다고 하면 gh auth status 로 다시 확인해.
+[3단계] GitHub 로그인 (건너뜀)
+- 저장소가 공개라서 GitHub 로그인은 필요 없어. 이 단계는 하지 말고 바로 4단계로 가. (git clone 이 인증을 요구하는 오류를 낼 때만 gh auth login --web 을 실행하고, 일회용 코드와 주소를 보여 줘.)
 
 [4단계] Gencow OpenCode 설정 묶음 설치
 - 설치 폴더는 홈 폴더의 opencode-gencow 야. (macOS: ~/opencode-gencow, Windows: %USERPROFILE%\opencode-gencow)
