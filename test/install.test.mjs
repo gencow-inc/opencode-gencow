@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { install, uninstall, doctor, parseJsonc, configDir, MCP_URL, EGO_INSTALL_ARGS, nodeSupportsEgo } from "../src/lib.mjs";
+import { install, uninstall, doctor, parseJsonc, configDir, MCP_URL, EGO_INSTALL_ARGS, nodeSupportsEgo, findDesktopCli } from "../src/lib.mjs";
 
 const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), "gencow-oc-"));
 const read = (...p) => fs.readFileSync(path.join(...p), "utf8");
@@ -140,4 +140,36 @@ test("ego-browser: 전역(-g)/opencode 대상으로 설치하고 Node 22.20 미�
   await install({ dir: tmp(), platform: "darwin", nodeVersion: "20.11.0", runEgo: () => (calls++, true), log: (l) => logs.push(l) });
   assert.equal(calls, 0);
   assert.ok(logs.some((l) => l.includes("22.20")));
+});
+
+test("install: OpenCode 2.x 형식(mcp.servers)이면 거기에 등록하고 예전 방식 중복을 만들지 않는다", async () => {
+  const dir = tmp();
+  fs.writeFileSync(path.join(dir, "opencode.json"), JSON.stringify({ mcp: { servers: { other: { type: "remote", url: "https://o.example" } } } }));
+  await install(opts(dir));
+  const cfg = JSON.parse(read(dir, "opencode.json"));
+  assert.deepEqual(cfg.mcp.servers.gencow, { type: "remote", url: MCP_URL });
+  assert.equal(cfg.mcp.servers.other.url, "https://o.example");
+  assert.equal(cfg.mcp.gencow, undefined);
+  const logs = [];
+  assert.equal(await doctor({ dir, checkNetwork: false, home: dir, log: (l) => logs.push(l) }) !== undefined, true);
+  assert.ok(logs.some((l) => l.startsWith("✓ Gencow MCP")));
+  // 예전 방식으로 이미 넣어 둔 항목은 새 형식으로 옮겨진다
+  const dir2 = tmp();
+  fs.writeFileSync(path.join(dir2, "opencode.json"), JSON.stringify({ mcp: { servers: {}, gencow: { type: "remote", url: MCP_URL, enabled: true } } }));
+  await install(opts(dir2));
+  const c2 = JSON.parse(read(dir2, "opencode.json"));
+  assert.deepEqual(c2.mcp.servers.gencow, { type: "remote", url: MCP_URL });
+  assert.equal(c2.mcp.gencow, undefined);
+  await uninstall({ dir: dir2 });
+  assert.equal(JSON.parse(read(dir2, "opencode.json")).mcp?.servers?.gencow, undefined);
+});
+
+test("findDesktopCli: macOS 데스크톱 앱 안의 CLI 를 찾는다", () => {
+  const home = tmp();
+  const f = path.join(home, "Library", "Application Support", "ai.opencode.desktop", "cli", "2.3.0-arm64", "opencode-cli");
+  fs.mkdirSync(path.dirname(f), { recursive: true });
+  fs.writeFileSync(f, "");
+  assert.equal(findDesktopCli(home, "darwin"), f);
+  assert.equal(findDesktopCli(home, "linux"), null);
+  assert.equal(findDesktopCli(tmp(), "darwin"), null);
 });

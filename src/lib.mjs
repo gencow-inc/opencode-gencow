@@ -113,6 +113,16 @@ function defaultRunEgo() {
   return r.status === 0;
 }
 
+/** OpenCode 2.x 설정은 mcp.servers.<이름> 형식이다. 이미 그 형식이면 거기에 등록하고, 아니면 예전 mcp.<이름> 형식을 쓴다. */
+function mcpLayout(config) {
+  config.mcp = config.mcp && typeof config.mcp === "object" ? config.mcp : {};
+  const sv = config.mcp.servers;
+  const v2 = !!sv && typeof sv === "object" && !Array.isArray(sv) && typeof sv.type !== "string";
+  return v2
+    ? { v2, box: sv, wanted: { type: "remote", url: MCP_URL } }
+    : { v2, box: config.mcp, wanted: { type: "remote", url: MCP_URL, enabled: true } };
+}
+
 export async function install({
   dir,
   dryRun = false,
@@ -151,11 +161,11 @@ export async function install({
   // Gencow MCP 등록
   const file = findConfigFile(dir);
   const { config, hadComments } = readConfig(file);
-  config.mcp = config.mcp && typeof config.mcp === "object" ? config.mcp : {};
-  const had = config.mcp.gencow;
-  const wanted = { type: "remote", url: MCP_URL, enabled: true };
+  const { v2, box, wanted } = mcpLayout(config);
+  const had = box.gencow;
+  const legacyDup = v2 && config.mcp.gencow && config.mcp.gencow.url === MCP_URL; // 예전 방식으로 넣어 둔 중복 항목
   let addedMcp = previous?.addedMcp ?? !had;
-  if (had && JSON.stringify(had) === JSON.stringify(wanted)) {
+  if (had && !legacyDup && JSON.stringify(had) === JSON.stringify(wanted)) {
     log(`${prefix}Gencow MCP: 이미 등록됨`);
   } else {
     if (had && !previous?.addedMcp) log(`${prefix}기존 gencow MCP 설정을 교체합니다 (백업 생성).`);
@@ -163,7 +173,8 @@ export async function install({
     if (!dryRun) {
       fs.mkdirSync(dir, { recursive: true });
       if (fs.existsSync(file)) fs.copyFileSync(file, `${file}.bak-${stamp()}`);
-      config.mcp.gencow = wanted;
+      box.gencow = wanted;
+      if (legacyDup) delete config.mcp.gencow;
       fs.writeFileSync(file, JSON.stringify(config, null, 2) + "\n");
     }
     log(`${prefix}Gencow MCP 등록: ${MCP_URL}`);
@@ -217,11 +228,13 @@ export async function uninstall({ dir, dryRun = false, log = () => {} } = {}) {
   if (manifest.addedMcp) {
     const file = findConfigFile(dir);
     const { config } = readConfig(file);
-    if (config.mcp?.gencow) {
+    const { box } = mcpLayout(config);
+    if (box.gencow) {
       log(`${prefix}Gencow MCP 등록 해제`);
       if (!dryRun) {
         fs.copyFileSync(file, `${file}.bak-${stamp()}`);
-        delete config.mcp.gencow;
+        delete box.gencow;
+        if (box !== config.mcp && Object.keys(box).length === 0) delete config.mcp.servers;
         if (Object.keys(config.mcp).length === 0) delete config.mcp;
         fs.writeFileSync(file, JSON.stringify(config, null, 2) + "\n");
       }
@@ -234,6 +247,20 @@ export async function uninstall({ dir, dryRun = false, log = () => {} } = {}) {
 function opencodeVersion() {
   const r = spawnSync("opencode", ["--version"], { encoding: "utf8", shell: process.platform === "win32" });
   return r.status === 0 ? r.stdout.trim() : null;
+}
+
+/** 데스크톱 앱만 설치한 macOS 는 opencode 명령이 PATH 에 없고, 앱 안에 CLI 가 들어 있다. */
+export function findDesktopCli(home = os.homedir(), platform = process.platform) {
+  if (platform !== "darwin") return null;
+  const base = path.join(home, "Library", "Application Support", "ai.opencode.desktop", "cli");
+  try {
+    const vers = fs.readdirSync(base).sort().reverse();
+    for (const v of vers) {
+      const f = path.join(base, v, "opencode-cli");
+      if (fs.existsSync(f)) return f;
+    }
+  } catch {}
+  return null;
 }
 
 async function mcpReachable() {
@@ -262,7 +289,13 @@ export async function doctor({
   };
 
   const v = opencodeVersion();
-  v ? pass(`OpenCode 설치됨 (${v})`) : fail("OpenCode 를 찾을 수 없습니다. https://opencode.ai/docs/ 에서 먼저 설치하세요.");
+  if (v) pass(`OpenCode 설치됨 (${v})`);
+  else {
+    const app = findDesktopCli(home, platform);
+    app
+      ? warn(`opencode 명령이 PATH 에 없습니다. 앱 안의 CLI 를 연결하세요: mkdir -p ~/.local/bin && ln -sfn "${app}" ~/.local/bin/opencode (그리고 PATH 에 ~/.local/bin 추가)`)
+      : fail("OpenCode 를 찾을 수 없습니다. https://opencode.ai/docs/ 에서 먼저 설치하세요.");
+  }
 
   const manifest = readManifest(dir);
   if (!manifest) {
@@ -276,7 +309,8 @@ export async function doctor({
 
   try {
     const { config } = readConfig(findConfigFile(dir));
-    config.mcp?.gencow?.url === MCP_URL
+    const u = mcpLayout(config).box.gencow?.url ?? config.mcp?.gencow?.url;
+    u === MCP_URL
       ? pass("Gencow MCP 가 opencode 설정에 등록됨")
       : fail("Gencow MCP 가 등록되어 있지 않습니다. install 을 다시 실행하세요.");
   } catch (err) {

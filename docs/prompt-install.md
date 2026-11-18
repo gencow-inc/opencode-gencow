@@ -23,7 +23,7 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
 - Gencow에 필요한 것: Node.js 22.20 이상 (ego-browser 설치에 필요), Bun, pnpm 10.33.0, git.
 
 [2단계] 없는 도구만 설치 (허락받고 하나씩)
-- macOS: Homebrew가 있으면 brew를 쓰고, 없으면 Homebrew 없이 되는 방법을 먼저 찾아. (Node.js는 공식 설치 파일 주소를 알려 주고 내가 내려받아 설치하는 것이 가장 쉬워.) Homebrew 설치는 관리자 비밀번호 입력이 필요해서 네가 대신할 수 없으니, 정말 필요할 때만 공식 사이트(https://brew.sh)의 한 줄 명령을 보여 주고 내가 입력하도록 해.
+- macOS: 관리자 비밀번호 없이 되는 방법을 쓰고, Homebrew(brew)는 다른 사용자 소유라 권한 오류가 나는 경우가 많으니 쓰지 마. Node.js는 https://nodejs.org/dist/latest-v22.x/SHASUMS256.txt 에서 내 CPU(Apple Silicon은 darwin-arm64, Intel은 darwin-x64)용 .tar.gz 파일 이름과 SHA256 값을 읽어. 같은 폴더 주소에서 그 파일을 내려받아 SHA256 이 같은지 확인한 뒤 ~/.local/node 에 풀고, ~/.zshrc 에 export PATH="$HOME/.local/node/bin:$PATH" 한 줄을 (없을 때만) 추가해. 이 PATH는 같은 명령 안에서도 바로 적용해서 이어서 써.
 - Windows: winget을 사용해.
 - Node.js: 22.20 이상
 - Bun: 공식 설치 방법으로 설치
@@ -52,8 +52,12 @@ OpenCode를 연 뒤 아래 코드 블록 전체를 붙여넣으세요. OpenCode�
   4) 가입 또는 로그인을 마쳤다고 하면 네가 bunx gencow@latest login 을 실행해. 출력된 승인 주소(URL)를 보여 주면 내가 브라우저에서 승인할게.
   5) 다시 bunx gencow@latest whoami 로 로그인된 계정이 나오는지 확인해.
 - 이어서 Gencow MCP 인증을 진행해. MCP는 로그인이 필요해(OAuth, 인증 서버 https://gencow.app):
-  1) 네가 opencode mcp auth gencow 를 실행해. 출력된 승인 주소(URL)를 보여 주면 내가 브라우저에서 로그인/승인할게.
-  2) opencode mcp list 로 gencow 가 connected 인지 확인해. 인증이 안 되어 있으면 다시 안내해.
+  1) opencode 명령이 없으면(command not found) 먼저 앱 안의 CLI를 연결해: macOS는 ~/Library/Application Support/ai.opencode.desktop/cli/ 아래 가장 높은 버전 폴더의 opencode-cli 를 ~/.local/bin/opencode 로 ln -sfn 연결하고, ~/.zshrc 에 export PATH="$HOME/.local/bin:$PATH" 가 없으면 추가해. Windows는 OpenCode 설치 폴더에서 opencode-cli.exe 를 찾아 알려 줘.
+  2) 내가 할 일은 "브라우저에서 로그인하고 [허용] 버튼 누르기"뿐이야. /mcps 나 설정 화면, 세션 상세 패널을 찾아보라고 시키지 마. 주소를 복사해서 붙여넣게 시키지도 마.
+  3) 네가 opencode mcp auth gencow 를 백그라운드로 실행하고 출력 파일을 읽어서 승인 주소(https://gencow.app/platform/oauth/authorize?... 로 시작)를 찾아. 이 프로세스는 내가 허용할 때까지 살려 둬. 중간에 끄거나 다시 시작하지 마.
+  4) 승인 주소를 줄이거나 바꾸지 말고 그대로 보여 주고, 네가 직접 브라우저로 열어 줘. (macOS: open '<주소>', Windows: start "" "<주소>") 그리고 이렇게 말해 줘: "브라우저에 로그인 화면이 나오면 로그인해 주세요. 그다음 [허용] 버튼이 나오면 눌러 주세요."
+  5) 내가 "로그인했어"라고 했는데 [허용] 화면이 아니라 로그인 후 첫 화면(대시보드)만 보였다고 하면, 같은 승인 주소를 네가 한 번 더 열어 줘. 이미 로그인된 상태라 [허용] 화면이 바로 나와.
+  6) 내가 허용했다고 하면 opencode mcp list 로 gencow 가 connected 인지 확인해. 아니면 대기 프로세스가 끝났는지, 주소가 만료됐는지 확인하고, 필요하면 새 승인 주소로 처음부터 딱 한 번만 다시 해.
 - 참고: "gencow auth" 라는 명령은 없어. 로그인은 bunx gencow@latest login 이야.
 
 [5-2단계] Gencow LLM을 OpenCode에 연결 (권장)
