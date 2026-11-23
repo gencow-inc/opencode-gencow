@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "slow-memo",
+  "version": "0.1.0",
+  "description": "느린 메모의 블로그 글과 이미지를 관리합니다.",
+  "author": { "name": "GENCOW" },
+  "extensions": { "com.openai": { "interface": {
+    "displayName": "느린 메모",
+    "shortDescription": "블로그 글·이미지 관리",
+    "longDescription": "느린 메모 블로그의 글과 이미지를 관리합니다. 기본 작업은 초안 작성이며, 발행은 사용자가 명시적으로 요청할 때만 진행합니다.",
+    "developerName": "GENCOW",
+    "category": "Productivity",
+    "defaultPrompt": "느린 메모에 새 글 초안을 만들어줘."
+  } } }
+}
